@@ -1,4 +1,4 @@
-package org.czyz.game.board;
+package org.czyz.game;
 
 import java.util.List;
 

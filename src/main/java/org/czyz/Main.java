@@ -1,6 +1,6 @@
 package org.czyz;
 
-import org.czyz.game.board.*;
+import org.czyz.game.*;
 
 class Main {
 

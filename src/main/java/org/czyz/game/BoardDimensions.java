@@ -1,4 +1,4 @@
-package org.czyz.game.board;
+package org.czyz.game;
 
 public class BoardDimensions {
     private final Width width;

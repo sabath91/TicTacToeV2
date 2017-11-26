@@ -1,4 +1,4 @@
-package org.czyz.game.board;
+package org.czyz.game;
 
 public class Width {
     private final int value;
