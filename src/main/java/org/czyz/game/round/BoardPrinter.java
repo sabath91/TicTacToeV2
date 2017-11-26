@@ -8,8 +8,8 @@ class BoardPrinter {
 
     private final BoardBuilder boardBuilder;
 
-    public BoardPrinter(BoardBuilder boardBuilder) {
-        this.boardBuilder = boardBuilder;
+    public BoardPrinter(BoardBuilder boardDimensions, BoardDimensions dimensions) {
+        this.boardBuilder =boardDimensions;
     }
 
     public void print() {
