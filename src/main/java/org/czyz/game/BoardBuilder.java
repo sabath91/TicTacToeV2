@@ -1,13 +1,18 @@
 package org.czyz.game;
 
+import org.czyz.game.round.MovesHistory;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class BoardBuilder {
+public class BoardBuilder implements Observer {
     private final BoardDimensions dimensions;
     private List<Field> fields;
+    private MovesHistory moves;
 
     public BoardBuilder(BoardDimensions dimensions) {
         this.dimensions = dimensions;
@@ -29,6 +34,13 @@ public class BoardBuilder {
     }
 
 
+    public BoardBuilder fillWithMoves() {
+        return null;
+    }
 
 
+    @Override
+    public void update(Observable movesHistory, Object arg) {
+        moves = (MovesHistory) movesHistory;
+    }
 }
