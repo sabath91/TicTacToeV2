@@ -6,7 +6,7 @@ import java.util.Observer;
 class RoundReferee implements Observer {
     MovesHistory movesHistory;
     public boolean canBeContinued() {
-        return false;
+        return true;
     }
 
     public String getWinner() {
@@ -16,6 +16,6 @@ class RoundReferee implements Observer {
     @Override
     public void update(Observable movesHistory, Object arg) {
         this.movesHistory = (MovesHistory)movesHistory;
-        checkSequences();
+//        checkSequences();
     }
 }

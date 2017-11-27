@@ -28,7 +28,7 @@
                         <archive>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                <mainClass>com.epam.App</mainClass>
+                                <mainClass>org.czyz.Main</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

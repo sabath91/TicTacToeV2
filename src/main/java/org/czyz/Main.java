@@ -1,6 +1,7 @@
 package org.czyz;
 
 import org.czyz.game.*;
+import org.czyz.game.round.Round;
 
 class Main {
 
@@ -16,5 +17,8 @@ class Main {
                 .build();
 
         System.out.println(b);
+
+        Settings settings = new Settings(bd);
+        new Round(settings).play();
     }
 }

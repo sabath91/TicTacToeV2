@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-class Position {
+public class Position {
 
     private final int movePosition;
 
@@ -26,5 +26,9 @@ class Position {
     @Override
     public int hashCode() {
         return movePosition;
+    }
+
+    public int getIndex() {
+        return movePosition - 1;
     }
 }

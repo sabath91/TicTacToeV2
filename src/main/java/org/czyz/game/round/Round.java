@@ -3,7 +3,7 @@ package org.czyz.game.round;
 import org.czyz.game.BoardBuilder;
 import org.czyz.game.Settings;
 
-class Round {
+public class Round {
 
     private final BoardPrinter boardPrinter;
     private final MoveManager moveManager;
@@ -27,6 +27,7 @@ class Round {
 
     public void play() {
         while (roundReferee.canBeContinued()) {
+            boardPrinter.print();
             moveManager.handleMove();
             playerSwitcher.switchPlayers();
         }

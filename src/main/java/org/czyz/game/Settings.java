@@ -7,6 +7,8 @@ public class Settings {
 
     public Settings(BoardDimensions boardDimensions) {
         this.boardDimensions = boardDimensions;
+        player1 = new Player("Ala", Sign.O);
+        player2 = new Player("Piotrek", Sign.X);
     }
 
     public Player getStartingPlayer() {

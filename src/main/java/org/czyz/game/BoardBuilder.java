@@ -1,6 +1,7 @@
 package org.czyz.game;
 
 import org.czyz.game.round.MovesHistory;
+import org.czyz.game.round.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class BoardBuilder implements Observer {
 
     public BoardBuilder(BoardDimensions dimensions) {
         this.dimensions = dimensions;
+        moves = new MovesHistory();
     }
 
     public BoardBuilder viaArrayList(){
@@ -35,7 +37,13 @@ public class BoardBuilder implements Observer {
 
 
     public BoardBuilder fillWithMoves() {
-        return null;
+        for (Position position: moves.getOMoves()) {
+            fields.set(position.getIndex(), new OField());
+        }
+        for (Position position: moves.getXMoves()) {
+            fields.set(position.getIndex(), new XField());
+        }
+        return this;
     }
 
 

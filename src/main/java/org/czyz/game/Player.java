@@ -12,4 +12,9 @@ public class Player {
     public Sign getSing() {
         return sing;
     }
+
+    @Override
+    public String toString() {
+        return name + ": ";
+    }
 }

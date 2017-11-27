@@ -1,10 +1,7 @@
 package org.czyz.game.round;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.czyz.game.Settings;
 import org.czyz.game.Sign;
-
-import java.util.Set;
 
 class MoveManager {
     private final MoveHandler moveHandler;
