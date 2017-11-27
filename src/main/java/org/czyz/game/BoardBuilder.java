@@ -3,10 +3,7 @@ package org.czyz.game;
 import org.czyz.game.round.MovesHistory;
 import org.czyz.game.round.Position;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -46,6 +43,16 @@ public class BoardBuilder implements Observer {
         return this;
     }
 
+
+    public BoardBuilder fillWithMoves(MovesHistory movesHistory) {
+        for (Position position: movesHistory.getOMoves()) {
+            fields.set(position.getIndex(), new OField());
+        }
+        for (Position position: movesHistory.getXMoves()) {
+            fields.set(position.getIndex(), new XField());
+        }
+        return this;
+    }
 
     @Override
     public void update(Observable movesHistory, Object arg) {

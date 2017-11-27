@@ -12,4 +12,11 @@ public class BoardDimensions {
         return width.getValue() * height.getValue();
     }
 
+    public int getWidth() {
+        return width.getValue();
+    }
+
+    public int getHeight() {
+        return height.getValue();
+    }
 }

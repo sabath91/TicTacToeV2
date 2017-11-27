@@ -1,6 +1,7 @@
 package org.czyz.game.round;
 
 import org.czyz.game.BoardBuilder;
+import org.czyz.game.Score;
 import org.czyz.game.Settings;
 
 public class Round {
@@ -11,6 +12,7 @@ public class Round {
     private final MovesHistory movesHistory;
     private final PlayerSwitcher playerSwitcher;
     private RoundReferee roundReferee;
+    private Score score;
 
     public Round(Settings settings) {
         this.settings = settings;
@@ -20,18 +22,28 @@ public class Round {
         playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.getStartingPlayer());
         this.moveManager = new MoveManager(settings, playerSwitcher, movesHistory);
 
-        roundReferee = new RoundReferee();
+        roundReferee = new RoundReferee(settings);
         movesHistory.addObserver(boardBuilder);
         movesHistory.addObserver(roundReferee);
     }
 
-    public void play() {
+    public Score play() {
         while (roundReferee.canBeContinued()) {
             boardPrinter.print();
             moveManager.handleMove();
             playerSwitcher.switchPlayers();
         }
-        System.out.println("Wygrał: " + roundReferee.getWinner());
+        score = roundReferee.score();
+        printScore();
+        return score;
+    }
+
+    private void printScore() {
+        if(score.isDraw()){
+            System.out.println("Remis");
+        }else {
+            System.out.println("Wygrał(a): " +playerSwitcher.lastPlayer());
+        }
     }
 
 }

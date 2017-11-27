@@ -25,4 +25,12 @@ class PlayerSwitcher {
             currentPlayer = player1;
         }
     }
+
+    public Player lastPlayer() {
+        if (currentPlayer.equals(player1)) {
+            return player2;
+        } else {
+            return player1;
+        }
+    }
 }

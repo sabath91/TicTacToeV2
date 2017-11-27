@@ -14,4 +14,8 @@ public class Board {
     public String toString() {
         return board.toString();
     }
+
+    public Field get(int i) {
+        return board.get(i);
+    }
 }

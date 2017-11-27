@@ -49,4 +49,8 @@ public class MovesHistory extends Observable {
     public Set<Position> getOMoves() {
         return oMoves;
     }
+
+    public int size(){
+        return xMoves.size() + oMoves.size();
+    }
 }

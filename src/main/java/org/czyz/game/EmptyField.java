@@ -1,6 +1,6 @@
 package org.czyz.game;
 
-class EmptyField implements Field {
+public class EmptyField implements Field {
     private final int index;
 
     public EmptyField(int index) {

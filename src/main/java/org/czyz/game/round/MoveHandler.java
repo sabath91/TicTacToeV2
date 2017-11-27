@@ -15,7 +15,7 @@ class MoveHandler implements Interaction {
             message.accept(position);
         }else {
             onError.accept("Ruch jest nieprawidłowy proszę podać wartość raz jeszcze");
-            return action(message, onError, function);
+            return action(message, onError, function); //recursion was called 127 - works
         }
         return position;
     }
