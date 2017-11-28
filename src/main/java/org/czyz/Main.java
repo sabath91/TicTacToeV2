@@ -1,7 +1,7 @@
 package org.czyz;
 
 import org.czyz.game.*;
-import org.czyz.game.round.Round;
+import org.czyz.initgame.GameInitializer;
 
 class Main {
 
@@ -9,10 +9,7 @@ class Main {
 
         GameInitializer gameInitializer = new GameInitializer();
         Settings settings = gameInitializer.setupGame();
-
-//        BoardDimensions bd = new BoardDimensions(new Width(3), new Height(3));
-
-//        Settings settings = new Settings(bd);
         new Game(settings).play();
+
     }
 }

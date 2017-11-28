@@ -1,4 +1,6 @@
-package org.czyz;
+package org.czyz.initgame;
+
+import org.czyz.Interaction;
 
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -9,7 +11,6 @@ class PlayerCreator implements Interaction {
     public String action(Consumer<String> message, Consumer<String> onError, Function<String, Boolean> function) {
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
-
         if(function.apply(name)){
             return name;
         }else {

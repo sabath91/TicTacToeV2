@@ -1,4 +1,4 @@
-package org.czyz;
+package org.czyz.initgame;
 
 import org.czyz.game.BoardDimensions;
 
@@ -6,7 +6,7 @@ class WinningSequenceValidator {
     private static final int MIN_BOARD_DIMENSION = 3;
     private static int smallerBoardDimension;
 
-    public WinningSequenceValidator(int smallerBoardDimension) {
+    WinningSequenceValidator(int smallerBoardDimension) {
         this.smallerBoardDimension =smallerBoardDimension;
     }
 

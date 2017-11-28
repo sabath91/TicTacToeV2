@@ -1,4 +1,4 @@
-package org.czyz;
+package org.czyz.initgame;
 
 class PlayerNameValidator {
 

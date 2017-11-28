@@ -1,4 +1,6 @@
-package org.czyz;
+package org.czyz.initgame;
+
+import org.czyz.Interaction;
 
 import java.util.Scanner;
 import java.util.function.Consumer;

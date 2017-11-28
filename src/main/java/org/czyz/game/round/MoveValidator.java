@@ -13,7 +13,12 @@ class MoveValidator{
     }
 
     boolean validate(String userInput){
-        int position = Integer.parseInt(userInput); //TODO
+        int position;
+        try {
+            position = Integer.parseInt(userInput);
+        }catch (NumberFormatException e ){
+            return false;
+        }
         return isInRange(position) && moves.isPositionFree(new Position(position));
     }
 

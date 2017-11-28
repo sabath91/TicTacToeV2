@@ -1,4 +1,4 @@
-package org.czyz;
+package org.czyz.initgame;
 
 class DimensionValidator {
     private static final int MIN_BOARD_DIMENSION = 3;

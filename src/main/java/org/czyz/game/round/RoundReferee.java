@@ -50,7 +50,7 @@ class RoundReferee implements Observer {
         return movesHistory.size() < boardDimensions.boardSize();
     }
 
-    boolean isWinningMove() {
+    private boolean isWinningMove() {
         Sign sign = lastMove.sign;
         switch (sign) {
             case O:
@@ -79,7 +79,7 @@ class RoundReferee implements Observer {
         return isWinningSequenceOnList(list);
     }
 
-    boolean winOnRow() {
+    private boolean winOnRow() {
         ArrayList<Field> list = getRow(lastMove.position.getIndex());
         return isWinningSequenceOnList(list);
     }
@@ -170,7 +170,7 @@ class RoundReferee implements Observer {
 
     }
 
-    public Score score() {
+    Score score() {
         Score score = new Score();
         if (isBoardNotFull() && !canBeContinued) { // restoring value of isWinningMove without calculations
             if (lastMove.sign.equals(Sign.O)) {

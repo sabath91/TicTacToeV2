@@ -38,7 +38,7 @@ public class Round {
 
     private void printScore() {
         if(score.isDraw()){
-            System.out.println("Runda zakończona remis");
+            System.out.println("Runda zakończona remisem");
         }else {
             System.out.println("Rundę wygrał(a): " +playerSwitcher.lastPlayer());
         }

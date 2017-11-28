@@ -1,30 +1,16 @@
-package org.czyz;
+package org.czyz.initgame;
 
+import org.czyz.*;
 import org.czyz.game.*;
+import org.czyz.initgame.BoardDimensionCreator;
+import org.czyz.initgame.DimensionValidator;
 
-class GameInitializer {
+public class GameInitializer {
     private BoardDimensions boardDimensions;
     private Player player1;
     private Player player2;
     private Player startingPlayer;
     private WinningSequenceLength winningSequenceLength;
-
-    //just for test - how to do unit tests for it?
-    BoardDimensions getBoardDimensions() {
-        return boardDimensions;
-    }
-
-    Player getPlayer1() {
-        return player1;
-    }
-
-    Player getPlayer2() {
-        return player2;
-    }
-
-    WinningSequenceLength getWinningSequenceLength() {
-        return winningSequenceLength;
-    }
 
     public GameInitializer() {}
 
@@ -33,7 +19,6 @@ class GameInitializer {
         createWinningSequenceLength();
         createPlayers();
         setupStartingPlayer();
-
         return new Settings(boardDimensions, player1, player2, startingPlayer, winningSequenceLength);
     }
 
@@ -52,7 +37,7 @@ class GameInitializer {
         }
     }
 
-    void createWinningSequenceLength() {
+    private void createWinningSequenceLength() {
         System.out.println("Proszę podać rozmiar zwycięstwa");
         WinningSequenceCreator creator = new WinningSequenceCreator();
         int smallerBoardDimension = Math.min(boardDimensions.getWidth(), boardDimensions.getHeight());
@@ -62,7 +47,7 @@ class GameInitializer {
         winningSequenceLength = new WinningSequenceLength(length);
     }
 
-    void createBoardDimensions() {
+    private void createBoardDimensions() {
         System.out.println("Proszę podać wymiary planszy");
         System.out.println("Proszę podać szerokość");
         int width = askUserForBoardDimension();
@@ -79,7 +64,7 @@ class GameInitializer {
         return dim;
     }
 
-    void createPlayers() {
+    private void createPlayers() {
         player1 = createPlayer(Sign.X);
         player2 = createPlayer(Sign.O);
     }
