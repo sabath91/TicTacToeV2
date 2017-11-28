@@ -13,7 +13,6 @@ class MoveHandler implements Interaction {
         String position = scanner.nextLine();
 
         if(function.apply(position)){
-//            scanner.close();
             return position;
         }else {
             onError.accept("Ruch jest nieprawidłowy proszę podać wartość raz jeszcze");

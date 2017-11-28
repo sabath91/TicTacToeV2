@@ -10,7 +10,6 @@ public class Score {
         player2Score = 0;
     }
 
-
     public void player1Win() {
         player1Score += 3;
     }

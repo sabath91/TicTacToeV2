@@ -10,7 +10,7 @@ class MoveManager {
     private final PlayerSwitcher playerSwitcher;
     private final MovesHistory movesHistory;
 
-    public MoveManager(Settings settings, PlayerSwitcher playerSwitcher, MovesHistory movesHistory) {
+    MoveManager(Settings settings, PlayerSwitcher playerSwitcher, MovesHistory movesHistory) {
         this.settings = settings;
         this.movesHistory = movesHistory;
         this.playerSwitcher = playerSwitcher;
@@ -18,7 +18,7 @@ class MoveManager {
         this.moveValidator = new MoveValidator(settings.getBoardDimensions(), movesHistory);
     }
 
-    public void handleMove(){
+    void handleMove(){
         System.out.println(playerSwitcher.getCurrentPlayer() + " - gdzie chcesz postawić znak");
         String validUserInput = moveHandler.action(System.out::println, System.err::println, moveValidator::validate);
         int move = Integer.parseInt(validUserInput);
@@ -26,7 +26,12 @@ class MoveManager {
         Sign playerSign = playerSwitcher.getCurrentPlayer().getSing();
         movesHistory.markField(position, playerSign);
     }
-
+    //just for test todo: remove
+//    void handleMove(int move){
+//        Position position = new Position(move);
+//        Sign playerSign = playerSwitcher.getCurrentPlayer().getSing();
+//        movesHistory.markField(position, playerSign);
+//    }
 
 
 

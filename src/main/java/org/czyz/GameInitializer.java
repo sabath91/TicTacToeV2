@@ -2,23 +2,40 @@ package org.czyz;
 
 import org.czyz.game.*;
 
-class DataInitializer {
+class GameInitializer {
     private BoardDimensions boardDimensions;
     private Player player1;
     private Player player2;
     private WinningSequenceLength winningSequenceLength;
 
-    public DataInitializer() {}
+    //just for test - how to do unit tests for it?
+    BoardDimensions getBoardDimensions() {
+        return boardDimensions;
+    }
+
+    Player getPlayer1() {
+        return player1;
+    }
+
+    Player getPlayer2() {
+        return player2;
+    }
+
+    WinningSequenceLength getWinningSequenceLength() {
+        return winningSequenceLength;
+    }
+
+    public GameInitializer() {}
 
     public Settings setupGame(){
         createBoardDimensions();
-        createPlayers();
         createWinningSequenceLength();
+        createPlayers();
 
         return new Settings(boardDimensions, player1, player2, winningSequenceLength);
     }
 
-    private void createWinningSequenceLength() {
+    void createWinningSequenceLength() {
         System.out.println("Proszę podać rozmiar zwycięstwa");
         WinningSequenceCreator creator = new WinningSequenceCreator();
         int smallerBoardDimension = Math.min(boardDimensions.getWidth(), boardDimensions.getHeight());
@@ -28,7 +45,7 @@ class DataInitializer {
         winningSequenceLength = new WinningSequenceLength(length);
     }
 
-    private void createBoardDimensions() {
+    void createBoardDimensions() {
         System.out.println("Proszę podać wymiary planszy");
         System.out.println("Proszę podać szerokość");
         int width = askUserForBoardDimension();
@@ -45,7 +62,7 @@ class DataInitializer {
         return dim;
     }
 
-    private void createPlayers() {
+    void createPlayers() {
         player1 = createPlayer(Sign.X);
         player2 = createPlayer(Sign.O);
     }

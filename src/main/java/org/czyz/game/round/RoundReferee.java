@@ -19,7 +19,7 @@ class RoundReferee implements Observer {
     private boolean canBeContinued;
 
 
-    public RoundReferee(Settings settings) {
+    RoundReferee(Settings settings) {
         movesHistory = new MovesHistory();
         winningSequenceLength = settings.getWinningSequenceLength();
         boardDimensions = settings.getBoardDimensions();
@@ -29,7 +29,7 @@ class RoundReferee implements Observer {
 
     }
 
-    public boolean canBeContinued() {
+    boolean canBeContinued() {
         return canBeContinued;
     }
 
@@ -50,7 +50,7 @@ class RoundReferee implements Observer {
         return movesHistory.size() < boardDimensions.boardSize();
     }
 
-    public boolean isWinningMove() {
+    boolean isWinningMove() {
         Sign sign = lastMove.sign;
         switch (sign) {
             case O:
@@ -60,7 +60,6 @@ class RoundReferee implements Observer {
                 wanted = new XField();
                 break;
         }
-//        System.out.println("Is winnging: "+ (winOnRow() || winOnColumn() || winOnRightDiagonal() || winOnLeftDiagonal()));
         return winOnRow() || winOnColumn() || winOnRightDiagonal() || winOnLeftDiagonal();
     }
 
@@ -99,7 +98,7 @@ class RoundReferee implements Observer {
         return false;
     }
 
-    public ArrayList<Field> getRow(int lastMove) {
+    private ArrayList<Field> getRow(int lastMove) {
         int rowNumber = lastMove / boardWidth;
         ArrayList<Field> result = new ArrayList<>(boardWidth);
         for (int i = 0; i < boardWidth; i++) {
@@ -108,7 +107,7 @@ class RoundReferee implements Observer {
         return result;
     }
 
-    public ArrayList<Field> getRightDiagonal(int lastMove) {
+    private ArrayList<Field> getRightDiagonal(int lastMove) {
 
 
         int initRowNumber = lastMove / boardWidth;
@@ -136,7 +135,7 @@ class RoundReferee implements Observer {
         return result;
     }
 
-    public ArrayList<Field> getLeftDiagonal(int lastMove) {
+    private ArrayList<Field> getLeftDiagonal(int lastMove) {
         int initRowNumber = lastMove / boardWidth;
         int initColumnNumber = lastMove % boardWidth;
         int difference = Math.abs(Math.min(initColumnNumber, initRowNumber) - 0);
@@ -160,7 +159,7 @@ class RoundReferee implements Observer {
         return result;
     }
 
-    public ArrayList<Field> getColumn(int lastMove) {
+    private ArrayList<Field> getColumn(int lastMove) {
         int columnNumber = lastMove % boardWidth;
         ArrayList<Field> result = new ArrayList<>(boardHeight);
         for (int i = 0; i < boardHeight; i++) {

@@ -8,23 +8,20 @@ public class Round {
 
     private final BoardPrinter boardPrinter;
     private final MoveManager moveManager;
-    private final Settings settings;
     private final MovesHistory movesHistory;
     private final PlayerSwitcher playerSwitcher;
     private RoundReferee roundReferee;
     private Score score;
 
     public Round(Settings settings) {
-        this.settings = settings;
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
         this.boardPrinter = new BoardPrinter(boardBuilder, settings.getBoardDimensions());
-        movesHistory = new MovesHistory();
-        playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.startingPlayer());
+        this.movesHistory = new MovesHistory();
+        this.playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.startingPlayer());
         this.moveManager = new MoveManager(settings, playerSwitcher, movesHistory);
-
-        roundReferee = new RoundReferee(settings);
-        movesHistory.addObserver(boardBuilder);
-        movesHistory.addObserver(roundReferee);
+        this.roundReferee = new RoundReferee(settings);
+        this.movesHistory.addObserver(boardBuilder);
+        this.movesHistory.addObserver(roundReferee);
     }
 
     public Score play() {
@@ -41,9 +38,9 @@ public class Round {
 
     private void printScore() {
         if(score.isDraw()){
-            System.out.println("Remis");
+            System.out.println("Runda zakończona remis");
         }else {
-            System.out.println("Wygrał(a): " +playerSwitcher.lastPlayer());
+            System.out.println("Rundę wygrał(a): " +playerSwitcher.lastPlayer());
         }
     }
 

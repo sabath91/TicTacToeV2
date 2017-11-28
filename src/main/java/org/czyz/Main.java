@@ -7,12 +7,12 @@ class Main {
 
     public static void main(String[] args) {
 
-        DataInitializer dataInitializer = new DataInitializer();
-        Settings settings = dataInitializer.setupGame();
+        GameInitializer gameInitializer = new GameInitializer();
+        Settings settings = gameInitializer.setupGame();
 
 //        BoardDimensions bd = new BoardDimensions(new Width(3), new Height(3));
 
 //        Settings settings = new Settings(bd);
-        new Round(settings).play();
+        new Game(settings).play();
     }
 }
