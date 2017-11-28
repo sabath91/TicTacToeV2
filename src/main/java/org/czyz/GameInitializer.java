@@ -6,6 +6,7 @@ class GameInitializer {
     private BoardDimensions boardDimensions;
     private Player player1;
     private Player player2;
+    private Player startingPlayer;
     private WinningSequenceLength winningSequenceLength;
 
     //just for test - how to do unit tests for it?
@@ -31,8 +32,24 @@ class GameInitializer {
         createBoardDimensions();
         createWinningSequenceLength();
         createPlayers();
+        setupStartingPlayer();
 
-        return new Settings(boardDimensions, player1, player2, winningSequenceLength);
+        return new Settings(boardDimensions, player1, player2, startingPlayer, winningSequenceLength);
+    }
+
+    private void setupStartingPlayer() {
+        System.out.println("Kto zaczyna O czy X?");
+        StartPlayerSetup setup = new StartPlayerSetup();
+        StartPlayerValidator validator = new StartPlayerValidator();
+        String validUserInput = setup.action(System.out::println, System.err::println, validator::validate);
+        switch (validUserInput){
+            case "X":
+                startingPlayer = player1;
+                break;
+            case "O":
+                startingPlayer = player2;
+                break;
+        }
     }
 
     void createWinningSequenceLength() {

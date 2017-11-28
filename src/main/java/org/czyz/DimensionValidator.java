@@ -6,7 +6,12 @@ class DimensionValidator {
 
 
     boolean validate(String userInput){
-        int dim = Integer.valueOf(userInput);
+        int dim;
+        try {
+            dim = Integer.valueOf(userInput);
+        }catch (NumberFormatException e){
+            return false;
+        }
         return dim>=MIN_BOARD_DIMENSION && dim<=MAX_BOARD_DIMENSION;
     }
 }

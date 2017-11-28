@@ -11,7 +11,12 @@ class WinningSequenceValidator {
     }
 
     boolean validate(String userInput){
-        int length = Integer.valueOf(userInput);
+        int length;
+        try {
+            length = Integer.valueOf(userInput);
+        }catch (NumberFormatException e){
+            return false;
+        }
         return length>=MIN_BOARD_DIMENSION && length<=smallerBoardDimension;
     }
 

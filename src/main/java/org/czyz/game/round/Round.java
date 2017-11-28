@@ -17,7 +17,7 @@ public class Round {
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
         this.boardPrinter = new BoardPrinter(boardBuilder, settings.getBoardDimensions());
         this.movesHistory = new MovesHistory();
-        this.playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.startingPlayer());
+        this.playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.getStartingPlayer());
         this.moveManager = new MoveManager(settings, playerSwitcher, movesHistory);
         this.roundReferee = new RoundReferee(settings);
         this.movesHistory.addObserver(boardBuilder);
