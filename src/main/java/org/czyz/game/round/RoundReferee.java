@@ -97,7 +97,7 @@ class RoundReferee implements Observer {
     }
 
     private List<Field> getRow(int lastMove) {
-        int rowNumber = (lastMove - 1) / boardWidth;
+        int rowNumber = lastMove / boardWidth;
         ArrayList<Field> result = new ArrayList<>(boardWidth);
         for (int i = 0; i < boardWidth; i++) {
             result.add(board.get(rowNumber * boardWidth + i));
@@ -121,7 +121,7 @@ class RoundReferee implements Observer {
         int previousColumn = getColumnNumber(lastMarkedIndex);
         int index = lastMarkedIndex + step;
 
-        while (index <= boardDimensions.boardSize() && previousColumn>getColumnNumber(index)){
+        while (index < boardDimensions.boardSize() && previousColumn>getColumnNumber(index)){
             result.add(board.get(index));
             index+=step;
             previousColumn--;
@@ -164,7 +164,7 @@ class RoundReferee implements Observer {
         int previousColumn = getColumnNumber(lastMarkedIndex);
         int index = lastMarkedIndex + step;
 
-        while (index <= boardDimensions.boardSize() && previousColumn<getColumnNumber(index)){
+        while (index < boardDimensions.boardSize() && previousColumn<getColumnNumber(index)){
             result.add(board.get(index));
             index+=step;
             previousColumn++;
@@ -187,7 +187,7 @@ class RoundReferee implements Observer {
     }
 
     public ArrayList<Field> getColumn(int lastMove) {
-        int columnNumber = (lastMove - 1) % boardWidth;
+        int columnNumber = lastMove  % boardWidth;
         ArrayList<Field> result = new ArrayList<>(boardHeight);
         for (int i = 0; i < boardHeight; i++) {
             int index = columnNumber + (boardWidth * i);

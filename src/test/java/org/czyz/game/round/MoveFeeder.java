@@ -7,17 +7,37 @@ import java.util.stream.IntStream;
 class MoveFeeder {
     private MovesHistory movesHistory;
 
-    public MoveFeeder(MovesHistory movesHistory) {
+    MoveFeeder(MovesHistory movesHistory) {
         this.movesHistory = movesHistory;
     }
 
-    public MoveFeeder fillLeftBottomCorner(Triplet triplet) {
-        IntStream.iterate(triplet.height() * triplet.width() - triplet.width(), i -> i - triplet.width() + 1)
-                .limit(triplet.length())
-                .limit(triplet.length())
-                .forEach(index -> {System.out.println("Teraz działa na indezie: "+ index); movesHistory.markField(new Position(index + 1), Sign.X);});
 
-        return this;
+
+    void fillRow(Triplet triplet) {
+        IntStream.iterate(0, i -> i + 1)
+                .limit(triplet.width())
+                .limit(triplet.length())
+                .forEach(index -> {movesHistory.markField(new Position(index + 1), Sign.X);});
     }
 
+    void fillColumn(Triplet triplet) {
+        IntStream.iterate(0, i -> i + triplet.width())
+                .limit(triplet.width())
+                .limit(triplet.length())
+                .forEach(index -> {movesHistory.markField(new Position(index + 1), Sign.X);});
+    }
+
+    void fillAscending(Triplet triplet) {
+        IntStream.iterate(triplet.height() * triplet.width() - triplet.width(), i -> i - triplet.width() + 1)
+                .limit(triplet.height())
+                .limit(triplet.length())
+                .forEach(index -> {System.out.println("Teraz działa na indezie: "+ index); movesHistory.markField(new Position(index + 1), Sign.X);});
+    }
+
+    void fillDescending(Triplet triplet) {
+        IntStream.iterate(0, i -> i + triplet.width() + 1)
+                .limit(triplet.height())
+                .limit(triplet.length())
+                .forEach(index -> {movesHistory.markField(new Position(index + 1), Sign.X);});
+    }
 }

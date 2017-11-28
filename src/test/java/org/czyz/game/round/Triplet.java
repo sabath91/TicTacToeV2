@@ -22,7 +22,7 @@ final class Triplet {
      */
     @Override
     public String toString() {
-        return "Triplet{" + "heightValue=" + height + ", widthValue=" + width + ", winningCountValue=" + length + '}';
+        return "height=" + height + ", width=" + width + ", winningLength=" + length;
     }
 
     public int height() {
