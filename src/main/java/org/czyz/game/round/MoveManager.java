@@ -1,7 +1,7 @@
 package org.czyz.game.round;
 
 import org.czyz.game.Settings;
-import org.czyz.game.Sign;
+import org.czyz.Sign;
 
 class MoveManager {
     private final MoveHandler moveHandler;

@@ -1,4 +1,4 @@
-package org.czyz.game.round;
+package org.czyz;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

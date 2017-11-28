@@ -1,5 +1,7 @@
 package org.czyz.game;
 
+import org.czyz.Sign;
+
 public class Player {
     private final String name;
     private final Sign sing;

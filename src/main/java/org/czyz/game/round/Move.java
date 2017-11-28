@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-import org.czyz.game.Sign;
+import org.czyz.Sign;
 
 class Move {
     Position position;

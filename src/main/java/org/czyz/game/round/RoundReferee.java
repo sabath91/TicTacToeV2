@@ -1,9 +1,11 @@
 package org.czyz.game.round;
 
-import javafx.geometry.Pos;
+import org.czyz.Sign;
 import org.czyz.game.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 class RoundReferee implements Observer {
     private final WinningSequenceLength winningSequenceLength;
@@ -12,7 +14,7 @@ class RoundReferee implements Observer {
     private final BoardDimensions boardDimensions;
     private MovesHistory movesHistory;
     private Move lastMove;
-    Field wanted;
+    private Field wanted;
     private Board board;
     private boolean canBeContinued;
 
@@ -50,16 +52,15 @@ class RoundReferee implements Observer {
 
     public boolean isWinningMove() {
         Sign sign = lastMove.sign;
-        switch (sign){
+        switch (sign) {
             case O:
                 wanted = new OField();
                 break;
             case X:
                 wanted = new XField();
                 break;
-
         }
-        System.out.println("Is winnging: "+ (winOnRow() || winOnColumn() || winOnRightDiagonal() || winOnLeftDiagonal()));
+//        System.out.println("Is winnging: "+ (winOnRow() || winOnColumn() || winOnRightDiagonal() || winOnLeftDiagonal()));
         return winOnRow() || winOnColumn() || winOnRightDiagonal() || winOnLeftDiagonal();
     }
 
@@ -108,8 +109,10 @@ class RoundReferee implements Observer {
     }
 
     public ArrayList<Field> getRightDiagonal(int lastMove) {
+
+
         int initRowNumber = lastMove / boardWidth;
-        int initColumnNumber = lastMove  % boardWidth;
+        int initColumnNumber = lastMove % boardWidth;
         int difference = Math.abs(Math.min(initColumnNumber, initRowNumber) - 0);
         int rowNumber = initRowNumber - difference;
         int columnNumber = initColumnNumber - difference;
@@ -170,13 +173,13 @@ class RoundReferee implements Observer {
 
     public Score score() {
         Score score = new Score();
-        if(isBoardNotFull() && !canBeContinued){ // restoring value of isWinningMove without calculations
-            if(lastMove.sign.equals(Sign.O)){
+        if (isBoardNotFull() && !canBeContinued) { // restoring value of isWinningMove without calculations
+            if (lastMove.sign.equals(Sign.O)) {
                 score.player1Win();
-            }else {
+            } else {
                 score.player2Win();
             }
-        }else{ // draw
+        } else { // draw
             score.markDraw();
         }
         return score;
