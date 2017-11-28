@@ -8,6 +8,7 @@ public class BoardDimensions {
         this.width = width;
         this.height = height;
     }
+
     public int boardSize(){
         return width.getValue() * height.getValue();
     }

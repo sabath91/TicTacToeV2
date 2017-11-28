@@ -3,7 +3,7 @@ package org.czyz.game;
 public class WinningSequenceLength {
     private final int length;
 
-    WinningSequenceLength(int length) {
+    public WinningSequenceLength(int length) {
         this.length = length;
     }
 

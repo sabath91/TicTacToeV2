@@ -19,7 +19,7 @@ public class Round {
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
         this.boardPrinter = new BoardPrinter(boardBuilder, settings.getBoardDimensions());
         movesHistory = new MovesHistory();
-        playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.getStartingPlayer());
+        playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.startingPlayer());
         this.moveManager = new MoveManager(settings, playerSwitcher, movesHistory);
 
         roundReferee = new RoundReferee(settings);
@@ -33,6 +33,7 @@ public class Round {
             moveManager.handleMove();
             playerSwitcher.switchPlayers();
         }
+        boardPrinter.print();
         score = roundReferee.score();
         printScore();
         return score;

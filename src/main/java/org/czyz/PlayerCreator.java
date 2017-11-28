@@ -11,12 +11,10 @@ class PlayerCreator implements Interaction {
         String name = scanner.nextLine();
 
         if(function.apply(name)){
-            message.accept(name);
+            return name;
         }else {
             onError.accept("Nieprawidłowe Imię, Proszę spróbować jeszcze raz");
             return action(message, onError, function);
         }
-        scanner.close();
-        return name;
     }
 }

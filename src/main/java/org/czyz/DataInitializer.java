@@ -1,39 +1,53 @@
 package org.czyz;
 
-import org.czyz.game.Height;
-import org.czyz.game.Player;
-import org.czyz.game.Settings;
-import org.czyz.game.Width;
+import org.czyz.game.*;
 
 class DataInitializer {
-    private static final int MIN_BOARD_DIMENSION = 3;
-    private static final int MAX_BOARD_DIMENSION = 101;
-    private Settings settings;
+    private BoardDimensions boardDimensions;
+    private Player player1;
+    private Player player2;
+    private WinningSequenceLength winningSequenceLength;
 
-    public DataInitializer() {
-        this.settings = new Settings();
-    }
+    public DataInitializer() {}
 
-    public void setupGame(){
+    public Settings setupGame(){
         createBoardDimensions();
         createPlayers();
+        createWinningSequenceLength();
+
+        return new Settings(boardDimensions, player1, player2, winningSequenceLength);
+    }
+
+    private void createWinningSequenceLength() {
+        System.out.println("Proszę podać rozmiar zwycięstwa");
+        WinningSequenceCreator creator = new WinningSequenceCreator();
+        int smallerBoardDimension = Math.min(boardDimensions.getWidth(), boardDimensions.getHeight());
+        WinningSequenceValidator validator = new WinningSequenceValidator(smallerBoardDimension);
+        String validUserInput = creator.action(System.out::println, System.err::println, validator::validate);
+        int length = Integer.valueOf(validUserInput);
+        winningSequenceLength = new WinningSequenceLength(length);
     }
 
     private void createBoardDimensions() {
         System.out.println("Proszę podać wymiary planszy");
-        int width = askUserForBoardDimension("width: ");
-
-        int height = askUserForBoardDimension("height: ");
-        settings.setDimensions(new Width(width), new Height(height));
+        System.out.println("Proszę podać szerokość");
+        int width = askUserForBoardDimension();
+        System.out.println("Proszę podać wysokość");
+        int height = askUserForBoardDimension();
+        this.boardDimensions = new BoardDimensions(new Width(width), new Height(height));
     }
 
-    private int askUserForBoardDimension(String s) {
-
+    private int askUserForBoardDimension() {
+        BoardDimensionCreator creator = new BoardDimensionCreator();
+        DimensionValidator validator = new DimensionValidator();
+        String validUserInput = creator.action(System.out::println, System.err::println, validator::validate);
+        int dim = Integer.valueOf(validUserInput);
+        return dim;
     }
 
     private void createPlayers() {
-        settings.setPlayer1(createPlayer(Sign.X));
-        settings.setPlayer2(createPlayer(Sign.O));
+        player1 = createPlayer(Sign.X);
+        player2 = createPlayer(Sign.O);
     }
 
     private Player createPlayer(Sign sign) {

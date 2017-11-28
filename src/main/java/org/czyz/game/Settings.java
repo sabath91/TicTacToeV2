@@ -5,26 +5,19 @@ import org.czyz.Sign;
 import java.util.Set;
 
 public class Settings {
-    private BoardDimensions boardDimensions;
+    private final BoardDimensions boardDimensions;
     private final WinningSequenceLength winningSequenceLength;
+    private final Player player1;
+    private final Player player2;
 
-    private Player player1;
-    private Player player2;
-
-    public Settings(){
-        boardDimensions = new BoardDimensions(new Width(3),new Height( 3));
-        winningSequenceLength = new WinningSequenceLength(3);
-    }
-
-    public Settings(BoardDimensions boardDimensions) {
+    public Settings(BoardDimensions boardDimensions, Player player1, Player player2, WinningSequenceLength winningSequenceLength) {
         this.boardDimensions = boardDimensions;
-        //TODO: UI
-        winningSequenceLength = new WinningSequenceLength(3);
-        player1 = new Player("P1", Sign.O);
-        player2 = new Player("P2", Sign.X);
+        this.winningSequenceLength = winningSequenceLength;
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
-    public Player getStartingPlayer() {
+    public Player startingPlayer() {
         return player1;
     }
 
@@ -36,7 +29,6 @@ public class Settings {
         return player2;
     }
 
-
     public BoardDimensions getBoardDimensions() {
         return boardDimensions;
     }
@@ -45,15 +37,4 @@ public class Settings {
         return winningSequenceLength;
     }
 
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }
-
-    public void setDimensions(Width width, Height height) {
-        boardDimensions= new BoardDimensions(width, height);
-    }
 }
