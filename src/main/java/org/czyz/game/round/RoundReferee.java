@@ -3,9 +3,7 @@ package org.czyz.game.round;
 import org.czyz.Sign;
 import org.czyz.game.*;
 
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 class RoundReferee implements Observer {
     private final WinningSequenceLength winningSequenceLength;
@@ -60,17 +58,17 @@ class RoundReferee implements Observer {
                 wanted = new XField();
                 break;
         }
-        return winOnRow() || winOnColumn() || winOnRightDiagonal() || winOnLeftDiagonal();
+        return winOnRow() || winOnColumn() || winOnAscendingDiagonal() || winOnDescendingDiagonal();
     }
 
-    private boolean winOnLeftDiagonal() {
-        ArrayList<Field> list = getLeftDiagonal(lastMove.position.getIndex());
+    private boolean winOnDescendingDiagonal() {
+        List<Field> list = descendingDiagonal(lastMove.position.getIndex());
         return isWinningSequenceOnList(list);
     }
 
 
-    private boolean winOnRightDiagonal() {
-        ArrayList<Field> list = getRightDiagonal(lastMove.position.getIndex());
+    private boolean winOnAscendingDiagonal() {
+        List<Field> list = ascendingDiagonal(lastMove.position.getIndex());
         return isWinningSequenceOnList(list);
     }
 
@@ -80,12 +78,12 @@ class RoundReferee implements Observer {
     }
 
     private boolean winOnRow() {
-        ArrayList<Field> list = getRow(lastMove.position.getIndex());
+        List<Field> list = getRow(lastMove.position.getIndex());
         return isWinningSequenceOnList(list);
     }
 
 
-    private boolean isWinningSequenceOnList(ArrayList<Field> list) {
+    private boolean isWinningSequenceOnList(List<Field> list) {
         int maxLength = 0;
         for (Field field : list) {
             if (field.toString().equals(wanted.toString())) {
@@ -98,8 +96,8 @@ class RoundReferee implements Observer {
         return false;
     }
 
-    private ArrayList<Field> getRow(int lastMove) {
-        int rowNumber = lastMove / boardWidth;
+    private List<Field> getRow(int lastMove) {
+        int rowNumber = (lastMove - 1) / boardWidth;
         ArrayList<Field> result = new ArrayList<>(boardWidth);
         for (int i = 0; i < boardWidth; i++) {
             result.add(board.get(rowNumber * boardWidth + i));
@@ -107,60 +105,89 @@ class RoundReferee implements Observer {
         return result;
     }
 
-    private ArrayList<Field> getRightDiagonal(int lastMove) {
+    private List<Field> ascendingDiagonal(int lastMarkedIndex) {
+        List<Field> diagonal = new ArrayList<>();
 
+        diagonal.addAll(overIndexForAscending(lastMarkedIndex)); //just elements over
+        diagonal.add(board.get(lastMarkedIndex)); //this index
+        diagonal.addAll(underIndexForAscending(lastMarkedIndex)); //just elements under index;
 
-        int initRowNumber = lastMove / boardWidth;
-        int initColumnNumber = lastMove % boardWidth;
-        int difference = Math.abs(Math.min(initColumnNumber, initRowNumber) - 0);
-        int rowNumber = initRowNumber - difference;
-        int columnNumber = initColumnNumber - difference;
-        int resultSize = boardWidth;
+        return diagonal;
+    }
 
-        ArrayList<Field> result = new ArrayList<>();
-        try {
-            result.add(board.get(rowNumber * boardWidth + columnNumber));
-        } catch (IndexOutOfBoundsException e) {
-            result.add(new EmptyField(-1));
-        }
+    private List<Field> underIndexForAscending(int lastMarkedIndex) {
+        List<Field> result = new ArrayList<>();
+        int step = boardWidth -1;
+        int previousColumn = getColumnNumber(lastMarkedIndex);
+        int index = lastMarkedIndex + step;
 
-        for (int i = 1; i < resultSize; i++) {
-            try {
-                result.add(board.get(rowNumber * boardWidth + columnNumber + i * (boardWidth + 1)));
-            } catch (IndexOutOfBoundsException e) {
-                result.add(new EmptyField(-1));
-            }
-
+        while (index <= boardDimensions.boardSize() && previousColumn>getColumnNumber(index)){
+            result.add(board.get(index));
+            index+=step;
+            previousColumn--;
         }
         return result;
     }
 
-    private ArrayList<Field> getLeftDiagonal(int lastMove) {
-        int initRowNumber = lastMove / boardWidth;
-        int initColumnNumber = lastMove % boardWidth;
-        int difference = Math.abs(Math.min(initColumnNumber, initRowNumber) - 0);
-        int rowNumber = initRowNumber + difference;
-        int columnNumber = initColumnNumber - difference;
-        int resultSize = boardWidth;
+    private List<Field> overIndexForAscending(int lastMarkedIndex) {
+        List<Field> result = new ArrayList<>();
+        int step = boardWidth - 1;
+        int previousColumn = getColumnNumber(lastMarkedIndex);
+        int index = lastMarkedIndex - step;
 
-        ArrayList<Field> result = new ArrayList<>();
-        try {
-            result.add(board.get(rowNumber * boardWidth + columnNumber * boardHeight));
-        } catch (IndexOutOfBoundsException e) {
-            result.add(new EmptyField(-1));
+        while (index >= 0 && previousColumn<getColumnNumber(index)){
+            result.add(board.get(index));
+            index-=step;
+            previousColumn++;
         }
-        for (int i = 1; i < resultSize; i++) {
-            try {
-                result.add(board.get((rowNumber * boardWidth + columnNumber * boardHeight) - (i * (boardWidth - 1))));
-            } catch (IndexOutOfBoundsException e) {
-                result.add(new EmptyField(-1));
-            }
+        Collections.reverse(result);
+        return result;
+    }
+
+    private int getColumnNumber(int index) {
+        return index % boardWidth;
+    }
+
+    private List<Field> descendingDiagonal(int lastMarkedIndex) {
+        List<Field> diagonal = new ArrayList<>();
+
+        diagonal.addAll(overIndexForDescending(lastMarkedIndex)); //just elements over
+        diagonal.add(board.get(lastMarkedIndex)); //this index
+        diagonal.addAll(underIndexForDescending(lastMarkedIndex)); //just elements under index;
+
+        return diagonal;
+    }
+
+    private List<Field> underIndexForDescending(int lastMarkedIndex) {
+        List<Field> result = new ArrayList<>();
+        int step = boardWidth +1;
+        int previousColumn = getColumnNumber(lastMarkedIndex);
+        int index = lastMarkedIndex + step;
+
+        while (index <= boardDimensions.boardSize() && previousColumn<getColumnNumber(index)){
+            result.add(board.get(index));
+            index+=step;
+            previousColumn++;
         }
         return result;
     }
 
-    private ArrayList<Field> getColumn(int lastMove) {
-        int columnNumber = lastMove % boardWidth;
+    private List<Field> overIndexForDescending(int lastMarkedIndex) {
+        List<Field> result = new ArrayList<>();
+        int step = boardWidth +1;
+        int previousColumn = getColumnNumber(lastMarkedIndex);
+        int index = lastMarkedIndex - step;
+        while (index>=0 && previousColumn > getColumnNumber(index)){
+            result.add(board.get(index));
+            index -=step;
+            previousColumn--;
+        }
+        Collections.reverse(result);
+        return result;
+    }
+
+    public ArrayList<Field> getColumn(int lastMove) {
+        int columnNumber = (lastMove - 1) % boardWidth;
         ArrayList<Field> result = new ArrayList<>(boardHeight);
         for (int i = 0; i < boardHeight; i++) {
             int index = columnNumber + (boardWidth * i);
