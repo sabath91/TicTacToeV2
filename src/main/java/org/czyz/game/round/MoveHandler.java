@@ -2,6 +2,7 @@ package org.czyz.game.round;
 
 import org.czyz.Interaction;
 
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -9,10 +10,12 @@ import java.util.function.Function;
 class MoveHandler implements Interaction {
 
     private Scanner scanner;
+    private final ResourceBundle labels;
 
 
-    public MoveHandler() {
-       scanner = new Scanner(System.in);
+    public MoveHandler(ResourceBundle labels) {
+        this.labels = labels;
+        scanner = new Scanner(System.in);
     }
 
     @Override
@@ -23,7 +26,7 @@ class MoveHandler implements Interaction {
         if(function.apply(position)){
             return position;
         }else {
-            onError.accept("Ruch jest nieprawidłowy proszę podać wartość raz jeszcze");
+            onError.accept(labels.getString("moveError"));
             return action(onError, function); //recursion was called 127 - works
         }
     }

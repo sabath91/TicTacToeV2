@@ -3,6 +3,7 @@ package org.czyz.initgame;
 import org.czyz.*;
 import org.czyz.game.*;
 
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class GameInitializer {
@@ -13,9 +14,11 @@ public class GameInitializer {
     private WinningSequenceLength winningSequenceLength;
     private Printer printer;
     private Scanner scanner;
+    private final ResourceBundle labels;
 
-    public GameInitializer(Printer printer) {
+    public GameInitializer(Printer printer, ResourceBundle labels) {
         this.printer = printer;
+        this.labels = labels;
         scanner = new Scanner(System.in);
     }
 
@@ -29,8 +32,8 @@ public class GameInitializer {
     }
 
     private void setupStartingPlayer() {
-        printer.print("Kto zaczyna O czy X?");
-        StartPlayerSetup setup = new StartPlayerSetup(scanner);
+        printer.print(labels.getString("starts"));
+        StartPlayerSetup setup = new StartPlayerSetup(scanner, labels);
         StartPlayerValidator validator = new StartPlayerValidator();
         String validUserInput = setup.action(printer::print, validator::validate);
         switch (validUserInput){
@@ -44,8 +47,8 @@ public class GameInitializer {
     }
 
     private void createWinningSequenceLength() {
-        printer.print("Proszę podać rozmiar zwycięstwa");
-        WinningSequenceCreator creator = new WinningSequenceCreator(scanner);
+        printer.print(labels.getString("provideWinningSequenceLength"));
+        WinningSequenceCreator creator = new WinningSequenceCreator(scanner, labels);
         int smallerBoardDimension = Math.min(boardDimensions.getWidth(), boardDimensions.getHeight());
         WinningSequenceValidator validator = new WinningSequenceValidator(smallerBoardDimension);
         String validUserInput = creator.action(printer::print, validator::validate);
@@ -54,16 +57,16 @@ public class GameInitializer {
     }
 
     private void createBoardDimensions() {
-        printer.print("Proszę podać wymiary planszy");
-        printer.print("Proszę podać szerokość");
+        printer.print(labels.getString("provideBoardSize"));
+        printer.print(labels.getString("provideWidth"));
         int width = askUserForBoardDimension();
-        printer.print("Proszę podać wysokość");
+        printer.print(labels.getString("provideHeight"));
         int height = askUserForBoardDimension();
         this.boardDimensions = new BoardDimensions(new Width(width), new Height(height));
     }
 
     private int askUserForBoardDimension() {
-        BoardDimensionCreator creator = new BoardDimensionCreator(scanner);
+        BoardDimensionCreator creator = new BoardDimensionCreator(scanner, labels);
         DimensionValidator validator = new DimensionValidator();
         String validUserInput = creator.action(printer::print, validator::validate);
         int dim = Integer.valueOf(validUserInput);
@@ -76,8 +79,8 @@ public class GameInitializer {
     }
 
     private Player createPlayer(Sign sign) {
-        printer.print("Podaj imię gracza grającego " + sign.toString());
-        PlayerCreator playerCreator = new PlayerCreator(scanner);
+        printer.print(labels.getString("provideUserName") + sign.toString());
+        PlayerCreator playerCreator = new PlayerCreator(scanner, labels);
         PlayerNameValidator playerNameValidator = new PlayerNameValidator();
         String name = playerCreator.action(printer::print, playerNameValidator::validate);
         return new Player(name, sign);

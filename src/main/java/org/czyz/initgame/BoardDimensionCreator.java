@@ -2,6 +2,7 @@ package org.czyz.initgame;
 
 import org.czyz.Interaction;
 
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -9,9 +10,11 @@ import java.util.function.Function;
 class BoardDimensionCreator implements Interaction {
 
     private Scanner scanner;
+    private ResourceBundle labels;
 
-    public BoardDimensionCreator(Scanner scanner) {
+    public BoardDimensionCreator(Scanner scanner, ResourceBundle labels) {
         this.scanner = scanner;
+        this.labels = labels;
     }
 
     @Override
@@ -21,7 +24,7 @@ class BoardDimensionCreator implements Interaction {
         if(function.apply(dim)){
             return dim;
         }else {
-            onError.accept("Rozmiar jest nieprawidłowy. Plansza może mieć wymiar z przedziału <3,101> proszę spróbować jeszcze raz");
+            onError.accept(labels.getString("boardSizeError"));
             return action(onError, function); //recursion was called 127 - works
         }
     }

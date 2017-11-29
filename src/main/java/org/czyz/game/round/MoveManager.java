@@ -4,6 +4,8 @@ import org.czyz.Printer;
 import org.czyz.game.Settings;
 import org.czyz.Sign;
 
+import java.util.ResourceBundle;
+
 class MoveManager {
     private final MoveHandler moveHandler;
     private final MoveValidator moveValidator;
@@ -11,18 +13,20 @@ class MoveManager {
     private final PlayerSwitcher playerSwitcher;
     private final MovesHistory movesHistory;
     private final Printer printer;
+    private final ResourceBundle labels;
 
-    MoveManager(Settings settings, Printer printer, PlayerSwitcher playerSwitcher, MovesHistory movesHistory) {
+    MoveManager(Settings settings, Printer printer, PlayerSwitcher playerSwitcher, MovesHistory movesHistory, ResourceBundle labels) {
         this.settings = settings;
         this.printer = printer;
         this.movesHistory = movesHistory;
         this.playerSwitcher = playerSwitcher;
-        this.moveHandler =new MoveHandler();
+        this.moveHandler =new MoveHandler(labels);
         this.moveValidator = new MoveValidator(settings.getBoardDimensions(), movesHistory);
+        this.labels=  labels;
     }
 
     void handleMove(){
-        printer.print(playerSwitcher.getCurrentPlayer() + " - gdzie chcesz postawić znak?");
+        printer.print(playerSwitcher.getCurrentPlayer() + labels.getString("move"));
         String validUserInput = moveHandler.action(printer::print, moveValidator::validate);
         int move = Integer.parseInt(validUserInput);
         Position position = new Position(move);

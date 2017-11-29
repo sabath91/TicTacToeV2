@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 import static org.testng.Assert.*;
 
@@ -38,7 +39,7 @@ public class GameInitializerTest {
 
         setUpSystemIn(stringBuilder.toString());
 
-        GameInitializer gameInitializer = new GameInitializer(new ConsolePrinter());
+        GameInitializer gameInitializer = new GameInitializer(new ConsolePrinter(), ResourceBundle.getBundle("lang"));
 
         //when
         Settings settings = gameInitializer.setupGame();

@@ -151,7 +151,7 @@ class RoundReferee implements Observer {
     private List<Field> descendingDiagonal(int lastMarkedIndex) {
         List<Field> diagonal = new ArrayList<>();
 
-        diagonal.addAll(overIndexForDescending(lastMarkedIndex)); //just elements over
+        diagonal.addAll(overIndexForDescending(lastMarkedIndex)); //just elements over index
         diagonal.add(board.get(lastMarkedIndex)); //this index
         diagonal.addAll(underIndexForDescending(lastMarkedIndex)); //just elements under index;
 

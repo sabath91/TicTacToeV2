@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 import static org.testng.Assert.*;
 
@@ -42,7 +43,7 @@ public class RoundTest {
         setUpSystemIn(movesSequence);
         //given
         Settings settings = createSettings(triplet);
-        Round round = new Round(settings, new ConsolePrinter());
+        Round round = new Round(settings, new ConsolePrinter(), ResourceBundle.getBundle("lang"));
 
         //when
         Score score = round.play();
@@ -56,7 +57,7 @@ public class RoundTest {
         setUpSystemIn(movesSequence);
         //given
         Settings settings = createSettings(triplet);
-        Round round = new Round(settings, new ConsolePrinter());
+        Round round = new Round(settings, new ConsolePrinter(), ResourceBundle.getBundle("lang"));
 
         //when
         Score score = round.play();

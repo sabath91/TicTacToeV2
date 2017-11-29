@@ -2,6 +2,7 @@ package org.czyz.initgame;
 
 import org.czyz.Interaction;
 
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -9,9 +10,11 @@ import java.util.function.Function;
 class PlayerCreator implements Interaction {
 
     private Scanner scanner;
+    private final ResourceBundle labels;
 
-    PlayerCreator(Scanner scanner) {
+    PlayerCreator(Scanner scanner, ResourceBundle labels) {
         this.scanner = scanner;
+        this.labels = labels;
     }
 
     @Override
@@ -20,7 +23,7 @@ class PlayerCreator implements Interaction {
         if(function.apply(name)){
             return name;
         }else {
-            onError.accept("Nieprawidłowe Imię, Proszę spróbować jeszcze raz");
+            onError.accept(labels.getString("userNameError"));
             return action(onError, function);
         }
     }
