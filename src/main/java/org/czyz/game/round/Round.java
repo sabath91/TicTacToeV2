@@ -1,5 +1,6 @@
 package org.czyz.game.round;
 
+import org.czyz.Printer;
 import org.czyz.game.BoardBuilder;
 import org.czyz.game.Score;
 import org.czyz.game.Settings;
@@ -12,16 +13,18 @@ public class Round {
     private final PlayerSwitcher playerSwitcher;
     private RoundReferee roundReferee;
     private Score score;
+    private final Printer printer;
 
-    public Round(Settings settings) {
+    public Round(Settings settings, Printer printer) {
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
-        this.boardPrinter = new BoardPrinter(boardBuilder, settings.getBoardDimensions());
+        this.boardPrinter = new BoardPrinter(boardBuilder, settings.getBoardDimensions(), printer);
         this.movesHistory = new MovesHistory();
         this.playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.getStartingPlayer());
-        this.moveManager = new MoveManager(settings, playerSwitcher, movesHistory);
+        this.moveManager = new MoveManager(settings,printer, playerSwitcher, movesHistory);
         this.roundReferee = new RoundReferee(settings);
         this.movesHistory.addObserver(boardBuilder);
         this.movesHistory.addObserver(roundReferee);
+        this.printer = printer;
     }
 
     public Score play() {
@@ -38,9 +41,9 @@ public class Round {
 
     private void printScore() {
         if(score.isDraw()){
-            System.out.println("Runda zakończona remisem");
+            printer.print("Runda zakończona remisem");
         }else {
-            System.out.println("Rundę wygrał(a): " +playerSwitcher.lastPlayer());
+            printer.print("Rundę wygrał(a): " +playerSwitcher.lastPlayer());
         }
     }
 

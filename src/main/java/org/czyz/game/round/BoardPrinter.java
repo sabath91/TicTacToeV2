@@ -1,5 +1,6 @@
 package org.czyz.game.round;
 
+import org.czyz.Printer;
 import org.czyz.game.Board;
 import org.czyz.game.BoardBuilder;
 import org.czyz.game.BoardDimensions;
@@ -10,11 +11,13 @@ class BoardPrinter {
     private final BoardBuilder boardBuilder;
     private final int boardWidth;
     private final int boardSize;
-
-    public BoardPrinter(BoardBuilder boardBuilder, BoardDimensions dimensions) {
+    private final Printer printer;
+    
+    public BoardPrinter(BoardBuilder boardBuilder, BoardDimensions dimensions, Printer printer) {
         this.boardBuilder = boardBuilder;
         this.boardSize = dimensions.boardSize();
         this.boardWidth = dimensions.getWidth();
+        this.printer = printer;
     }
 
     public void print() {
@@ -42,6 +45,6 @@ class BoardPrinter {
             }
         }
 
-        System.out.println(board);
+        printer.print(board.toString());
     }
 }
