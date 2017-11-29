@@ -43,7 +43,7 @@ public class RoundRefereeTest {
 
 
     @Test(dataProvider = "randomBoards", dataProviderClass = RandomBoardsProvider.class)
-    public void shouldWinOnLeftBottomDiagonal(Triplet triplet) {
+    public void shouldWinOnAscendingDiagonal(Triplet triplet) {
         //given
         RoundReferee roundReferee = new RoundRefereeBuilder(triplet).build();
         MovesHistory movesHistory = new MovesHistory();

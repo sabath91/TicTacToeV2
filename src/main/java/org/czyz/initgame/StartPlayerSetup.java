@@ -9,7 +9,7 @@ import java.util.function.Function;
 class StartPlayerSetup implements Interaction {
 
     @Override
-    public String action(Consumer<String> message, Consumer<String> onError, Function<String, Boolean> function) {
+    public String action(Consumer<String> onError, Function<String, Boolean> function) {
         Scanner scanner = new Scanner(System.in);
         String sign = scanner.nextLine();
         sign = sign.toUpperCase();
@@ -17,7 +17,7 @@ class StartPlayerSetup implements Interaction {
             return sign;
         }else {
             onError.accept("Nieprawidłowy znak proszę podać X lub O");
-            return action(message, onError, function); //recursion was called 127 - works
+            return action(onError, function); //recursion was called 127 - works
         }
     }
 }

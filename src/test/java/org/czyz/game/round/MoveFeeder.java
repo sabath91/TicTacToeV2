@@ -31,7 +31,7 @@ class MoveFeeder {
         IntStream.iterate(triplet.height() * triplet.width() - triplet.width(), i -> i - triplet.width() + 1)
                 .limit(triplet.height())
                 .limit(triplet.length())
-                .forEach(index -> {System.out.println("Teraz działa na indezie: "+ index); movesHistory.markField(new Position(index + 1), Sign.X);});
+                .forEach(index ->  movesHistory.markField(new Position(index + 1), Sign.X));
     }
 
     void fillDescending(Triplet triplet) {

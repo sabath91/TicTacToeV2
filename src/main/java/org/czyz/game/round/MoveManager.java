@@ -20,15 +20,11 @@ class MoveManager {
 
     void handleMove(){
         System.out.println(playerSwitcher.getCurrentPlayer() + " - gdzie chcesz postawić znak?");
-        String validUserInput = moveHandler.action(System.out::println, System.err::println, moveValidator::validate);
+        String validUserInput = moveHandler.action(System.err::println, moveValidator::validate);
         int move = Integer.parseInt(validUserInput);
         Position position = new Position(move);
         Sign playerSign = playerSwitcher.getCurrentPlayer().getSing();
         movesHistory.markField(position, playerSign);
     }
-
-
-
-
 
 }

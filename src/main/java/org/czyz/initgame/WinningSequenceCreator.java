@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 class WinningSequenceCreator implements Interaction {
     @Override
-    public String action(Consumer<String> message, Consumer<String> onError, Function<String, Boolean> function) {
+    public String action(Consumer<String> onError, Function<String, Boolean> function) {
         Scanner scanner = new Scanner(System.in);
         String length = scanner.nextLine();
 
@@ -16,7 +16,7 @@ class WinningSequenceCreator implements Interaction {
             return length;
         } else {
             onError.accept("Nieprawidłowa wartość. Długośc ciągu musi należeć do przedziału <3, mniejszyWymiarPlanszy>");
-            return action(message, onError, function); //recursion was called 127 - works
+            return action(onError, function); //recursion was called 127 - works
         }
     }
 }

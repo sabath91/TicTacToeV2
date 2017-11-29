@@ -2,8 +2,6 @@ package org.czyz.initgame;
 
 import org.czyz.*;
 import org.czyz.game.*;
-import org.czyz.initgame.BoardDimensionCreator;
-import org.czyz.initgame.DimensionValidator;
 
 public class GameInitializer {
     private BoardDimensions boardDimensions;
@@ -26,7 +24,7 @@ public class GameInitializer {
         System.out.println("Kto zaczyna O czy X?");
         StartPlayerSetup setup = new StartPlayerSetup();
         StartPlayerValidator validator = new StartPlayerValidator();
-        String validUserInput = setup.action(System.out::println, System.err::println, validator::validate);
+        String validUserInput = setup.action(System.err::println, validator::validate);
         switch (validUserInput){
             case "X":
                 startingPlayer = player1;
@@ -42,7 +40,7 @@ public class GameInitializer {
         WinningSequenceCreator creator = new WinningSequenceCreator();
         int smallerBoardDimension = Math.min(boardDimensions.getWidth(), boardDimensions.getHeight());
         WinningSequenceValidator validator = new WinningSequenceValidator(smallerBoardDimension);
-        String validUserInput = creator.action(System.out::println, System.err::println, validator::validate);
+        String validUserInput = creator.action(System.err::println, validator::validate);
         int length = Integer.valueOf(validUserInput);
         winningSequenceLength = new WinningSequenceLength(length);
     }
@@ -59,7 +57,7 @@ public class GameInitializer {
     private int askUserForBoardDimension() {
         BoardDimensionCreator creator = new BoardDimensionCreator();
         DimensionValidator validator = new DimensionValidator();
-        String validUserInput = creator.action(System.out::println, System.err::println, validator::validate);
+        String validUserInput = creator.action(System.err::println, validator::validate);
         int dim = Integer.valueOf(validUserInput);
         return dim;
     }
@@ -73,7 +71,7 @@ public class GameInitializer {
         System.out.println("Podaj imię gracza grającego " + sign.toString());
         PlayerCreator playerCreator = new PlayerCreator();
         PlayerNameValidator playerNameValidator = new PlayerNameValidator();
-        String name = playerCreator.action(System.out::println, System.err::println, playerNameValidator::validate);
+        String name = playerCreator.action(System.err::println, playerNameValidator::validate);
         return new Player(name, sign);
     }
 
