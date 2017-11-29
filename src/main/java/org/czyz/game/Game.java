@@ -34,11 +34,13 @@ public class Game {
             printer.print(labels.getString("draw"));
         } else {
             if (gameScore.player1Score > gameScore.player2Score) {
-                printer.print(labels.getString("gameWon") + settings.getPlayer1().toString() + ":" + gameScore.player1Score);
-                printer.print(labels.getString("gameLost") + settings.getPlayer2().toString() + ":" + gameScore.player2Score);
+                String winner = settings.getPlayer1().getSing().toString();
+                String loser = settings.getPlayer2().getSing().toString();
+                printer.print(labels.getString("gameWon") + winner + ". " + winner + ":" + gameScore.player1Score + " " + loser +":"+gameScore.player2Score);
             } else {
-                printer.print(labels.getString("gameWon") + settings.getPlayer2().toString() + ":" + gameScore.player2Score);
-                printer.print(labels.getStringArray("gameLost") + settings.getPlayer1().toString() + ":" + gameScore.player1Score);
+                String winner = settings.getPlayer1().getSing().toString();
+                String loser = settings.getPlayer2().getSing().toString();
+                printer.print(labels.getString("gameWon") + winner + ". " + winner + ":" + gameScore.player2Score + " " + loser +":"+gameScore.player1Score);
             }
         }
     }

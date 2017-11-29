@@ -3,7 +3,10 @@ package org.czyz.game;
 import org.czyz.game.round.MovesHistory;
 import org.czyz.game.round.Position;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

@@ -1,6 +1,7 @@
 package org.czyz.initgame;
 
-import org.czyz.*;
+import org.czyz.Printer;
+import org.czyz.Sign;
 import org.czyz.game.*;
 
 import java.util.ResourceBundle;

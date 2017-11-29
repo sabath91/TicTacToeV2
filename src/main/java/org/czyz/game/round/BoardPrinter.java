@@ -4,6 +4,7 @@ import org.czyz.Printer;
 import org.czyz.game.Board;
 import org.czyz.game.BoardBuilder;
 import org.czyz.game.BoardDimensions;
+
 import java.util.Formatter;
 
 class BoardPrinter {
@@ -12,7 +13,7 @@ class BoardPrinter {
     private final int boardWidth;
     private final int boardSize;
     private final Printer printer;
-    
+
     public BoardPrinter(BoardBuilder boardBuilder, BoardDimensions dimensions, Printer printer) {
         this.boardBuilder = boardBuilder;
         this.boardSize = dimensions.boardSize();
@@ -28,23 +29,28 @@ class BoardPrinter {
                 .fillWithMoves()
                 .build();
 
-        Formatter board = new Formatter();
-        for (int i = 0; i < boardSize; i++) {
-            if ((i + 1) % boardWidth == 0) {
-                board.format("%5s", gameBoard.get(i));
-            } else {
-                board.format("%5s   |", gameBoard.get(i));
-            }
-            if ((i + 1) % boardWidth == 0) {
-                board.format("\n");
-                for (int j = 0; j < boardWidth - 1; j++) {
-                    board.format("%8s|", "--------");
+        Formatter board = null;
+        try {
+            board = new Formatter();
+            for (int i = 0; i < boardSize; i++) {
+                if ((i + 1) % boardWidth == 0) {
+                    board.format("%5s", gameBoard.get(i));
+                } else {
+                    board.format("%5s   |", gameBoard.get(i));
                 }
-                board.format("%8s", "--------");
-                board.format("\n");
+                if ((i + 1) % boardWidth == 0) {
+                    board.format("%n");
+                    for (int j = 0; j < boardWidth - 1; j++) {
+                        board.format("%8s|", "--------");
+                    }
+                    board.format("%8s", "--------");
+                    board.format("%n");
+                }
             }
+            printer.print(board.toString());
+        } finally {
+            if (board != null)
+                board.close();
         }
-
-        printer.print(board.toString());
     }
 }

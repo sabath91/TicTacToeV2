@@ -16,6 +16,9 @@ class MoveValidator{
         int position;
         try {
             position = Integer.parseInt(userInput);
+            if(position == 0){
+                System.exit(0);
+            }
         }catch (NumberFormatException e ){
             return false;
         }

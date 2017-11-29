@@ -1,9 +1,5 @@
 package org.czyz.game;
 
-import org.czyz.Sign;
-
-import java.util.Set;
-
 public class Settings {
     private final BoardDimensions boardDimensions;
     private final WinningSequenceLength winningSequenceLength;
