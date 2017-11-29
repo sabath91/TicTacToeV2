@@ -3,6 +3,8 @@ package org.czyz.initgame;
 import org.czyz.*;
 import org.czyz.game.*;
 
+import java.util.Scanner;
+
 public class GameInitializer {
     private BoardDimensions boardDimensions;
     private Player player1;
@@ -10,10 +12,13 @@ public class GameInitializer {
     private Player startingPlayer;
     private WinningSequenceLength winningSequenceLength;
     private Printer printer;
+    private Scanner scanner;
 
     public GameInitializer(Printer printer) {
         this.printer = printer;
+        scanner = new Scanner(System.in);
     }
+
 
     public Settings setupGame(){
         createBoardDimensions();
@@ -25,7 +30,7 @@ public class GameInitializer {
 
     private void setupStartingPlayer() {
         printer.print("Kto zaczyna O czy X?");
-        StartPlayerSetup setup = new StartPlayerSetup();
+        StartPlayerSetup setup = new StartPlayerSetup(scanner);
         StartPlayerValidator validator = new StartPlayerValidator();
         String validUserInput = setup.action(printer::print, validator::validate);
         switch (validUserInput){
@@ -40,7 +45,7 @@ public class GameInitializer {
 
     private void createWinningSequenceLength() {
         printer.print("Proszę podać rozmiar zwycięstwa");
-        WinningSequenceCreator creator = new WinningSequenceCreator();
+        WinningSequenceCreator creator = new WinningSequenceCreator(scanner);
         int smallerBoardDimension = Math.min(boardDimensions.getWidth(), boardDimensions.getHeight());
         WinningSequenceValidator validator = new WinningSequenceValidator(smallerBoardDimension);
         String validUserInput = creator.action(printer::print, validator::validate);
@@ -58,7 +63,7 @@ public class GameInitializer {
     }
 
     private int askUserForBoardDimension() {
-        BoardDimensionCreator creator = new BoardDimensionCreator();
+        BoardDimensionCreator creator = new BoardDimensionCreator(scanner);
         DimensionValidator validator = new DimensionValidator();
         String validUserInput = creator.action(printer::print, validator::validate);
         int dim = Integer.valueOf(validUserInput);
@@ -72,7 +77,7 @@ public class GameInitializer {
 
     private Player createPlayer(Sign sign) {
         printer.print("Podaj imię gracza grającego " + sign.toString());
-        PlayerCreator playerCreator = new PlayerCreator();
+        PlayerCreator playerCreator = new PlayerCreator(scanner);
         PlayerNameValidator playerNameValidator = new PlayerNameValidator();
         String name = playerCreator.action(printer::print, playerNameValidator::validate);
         return new Player(name, sign);

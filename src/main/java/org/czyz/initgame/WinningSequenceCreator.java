@@ -7,9 +7,15 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 class WinningSequenceCreator implements Interaction {
+
+    private Scanner scanner;
+
+    WinningSequenceCreator(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     @Override
     public String action(Consumer<String> onError, Function<String, Boolean> function) {
-        Scanner scanner = new Scanner(System.in);
         String length = scanner.nextLine();
 
         if (function.apply(length)) {

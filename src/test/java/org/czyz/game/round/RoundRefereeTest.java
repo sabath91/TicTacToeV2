@@ -11,8 +11,6 @@ public class RoundRefereeTest {
    @Test(dataProvider = "randomBoards", dataProviderClass = RandomBoardsProvider.class)
     public void shouldWinOnRow(Triplet triplet) {
         //given
-
-       triplet = new Triplet(3,3,3);
         RoundReferee roundReferee = new RoundRefereeBuilder(triplet).build();
         MovesHistory movesHistory = new MovesHistory();
         movesHistory.addObserver(roundReferee);

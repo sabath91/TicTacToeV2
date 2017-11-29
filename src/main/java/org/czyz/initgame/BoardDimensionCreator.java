@@ -7,9 +7,15 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 class BoardDimensionCreator implements Interaction {
+
+    private Scanner scanner;
+
+    public BoardDimensionCreator(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     @Override
     public String action(Consumer<String> onError, Function<String, Boolean> function) {
-        Scanner scanner = new Scanner(System.in);
         String dim = scanner.nextLine();
 
         if(function.apply(dim)){

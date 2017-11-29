@@ -8,9 +8,15 @@ import java.util.function.Function;
 
 class StartPlayerSetup implements Interaction {
 
+    private Scanner scanner;
+
+    StartPlayerSetup(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     @Override
     public String action(Consumer<String> onError, Function<String, Boolean> function) {
-        Scanner scanner = new Scanner(System.in);
+
         String sign = scanner.nextLine();
         sign = sign.toUpperCase();
         if(function.apply(sign)){

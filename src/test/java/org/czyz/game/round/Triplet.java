@@ -4,12 +4,12 @@ import org.czyz.game.Height;
 import org.czyz.game.Width;
 import org.czyz.game.WinningSequenceLength;
 
-final class Triplet {
+public final class Triplet {
     private final Height height;
     private final Width width;
     private final WinningSequenceLength length;
 
-    Triplet(final int heightValue, final int widthValue, final int lengthValue) {
+    public Triplet(final int heightValue, final int widthValue, final int lengthValue) {
         this.height = new Height(heightValue);
         this.width = new Width(widthValue);
         this.length = new WinningSequenceLength(lengthValue);
