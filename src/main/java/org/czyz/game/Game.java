@@ -6,9 +6,9 @@ import org.czyz.game.round.Round;
 import java.util.ResourceBundle;
 
 public class Game {
-    private Score gameScore;
+    private final Score gameScore;
     private final Settings settings;
-    private ResourceBundle labels;
+    private final ResourceBundle labels;
     private final Printer printer;
 
     public Game(Settings settings, Printer printer, ResourceBundle labels) {

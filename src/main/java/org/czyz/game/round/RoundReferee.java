@@ -186,7 +186,7 @@ class RoundReferee implements Observer {
         return result;
     }
 
-    public List<Field> getColumn(int lastMove) {
+    private List<Field> getColumn(int lastMove) {
         int columnNumber = lastMove  % boardWidth;
         ArrayList<Field> result = new ArrayList<>(boardHeight);
         for (int i = 0; i < boardHeight; i++) {

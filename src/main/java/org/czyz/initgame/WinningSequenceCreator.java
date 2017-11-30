@@ -9,8 +9,8 @@ import java.util.function.Function;
 
 class WinningSequenceCreator implements Interaction {
 
-    private Scanner scanner;
-    private ResourceBundle labels;
+    private final Scanner scanner;
+    private final ResourceBundle labels;
 
     WinningSequenceCreator(Scanner scanner, ResourceBundle labels) {
         this.scanner = scanner;

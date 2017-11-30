@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import static org.testng.Assert.*;
@@ -29,15 +28,14 @@ public class GameInitializerTest {
     @Test(dataProvider = "validValues")
     public void shouldInitializeGameWithValidValues(Triplet triplet, String player1Name, String player2Name, String whoStarts){
         //given
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(triplet.width() + "\n");
-        stringBuilder.append(triplet.height() + "\n");
-        stringBuilder.append(triplet.length() + "\n");
-        stringBuilder.append(player1Name + "\n");
-        stringBuilder.append(player2Name + "\n");
-        stringBuilder.append(whoStarts + "\n");
+        String stringBuilder = (triplet.width() + "\n") +
+                triplet.height() + "\n" +
+                triplet.length() + "\n" +
+                player1Name + "\n" +
+                player2Name + "\n" +
+                whoStarts + "\n";
 
-        setUpSystemIn(stringBuilder.toString());
+        setUpSystemIn(stringBuilder);
 
         GameInitializer gameInitializer = new GameInitializer(new ConsolePrinter(), ResourceBundle.getBundle("lang"));
 

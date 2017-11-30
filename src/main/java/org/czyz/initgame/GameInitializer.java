@@ -13,8 +13,8 @@ public class GameInitializer {
     private Player player2;
     private Player startingPlayer;
     private WinningSequenceLength winningSequenceLength;
-    private Printer printer;
-    private Scanner scanner;
+    private final Printer printer;
+    private final Scanner scanner;
     private final ResourceBundle labels;
 
     public GameInitializer(Printer printer, ResourceBundle labels) {
@@ -70,8 +70,7 @@ public class GameInitializer {
         BoardDimensionCreator creator = new BoardDimensionCreator(scanner, labels);
         DimensionValidator validator = new DimensionValidator();
         String validUserInput = creator.action(printer::print, validator::validate);
-        int dim = Integer.valueOf(validUserInput);
-        return dim;
+        return Integer.valueOf(validUserInput);
     }
 
     private void createPlayers() {

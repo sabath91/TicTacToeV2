@@ -5,7 +5,7 @@ import org.czyz.Sign;
 import java.util.stream.IntStream;
 
 class MoveFeeder {
-    private MovesHistory movesHistory;
+    private final MovesHistory movesHistory;
 
     MoveFeeder(MovesHistory movesHistory) {
         this.movesHistory = movesHistory;
@@ -17,14 +17,14 @@ class MoveFeeder {
         IntStream.iterate(0, i -> i + 1)
                 .limit(triplet.width())
                 .limit(triplet.length())
-                .forEach(index -> {movesHistory.markField(new Position(index + 1), Sign.X);});
+                .forEach(index -> movesHistory.markField(new Position(index + 1), Sign.X));
     }
 
     void fillColumn(Triplet triplet) {
         IntStream.iterate(0, i -> i + triplet.width())
                 .limit(triplet.width())
                 .limit(triplet.length())
-                .forEach(index -> {movesHistory.markField(new Position(index + 1), Sign.X);});
+                .forEach(index -> movesHistory.markField(new Position(index + 1), Sign.X));
     }
 
     void fillAscending(Triplet triplet) {
@@ -38,6 +38,6 @@ class MoveFeeder {
         IntStream.iterate(0, i -> i + triplet.width() + 1)
                 .limit(triplet.height())
                 .limit(triplet.length())
-                .forEach(index -> {movesHistory.markField(new Position(index + 1), Sign.X);});
+                .forEach(index -> movesHistory.markField(new Position(index + 1), Sign.X));
     }
 }

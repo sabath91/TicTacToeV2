@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 class StartPlayerSetup implements Interaction {
 
-    private Scanner scanner;
+    private final Scanner scanner;
     private final ResourceBundle labels;
 
     StartPlayerSetup(Scanner scanner, ResourceBundle labels) {

@@ -8,8 +8,8 @@ import java.util.Set;
 
 public class MovesHistory extends Observable {
 
-    private Set<Position> xMoves;
-    private Set<Position> oMoves;
+    private final Set<Position> xMoves;
+    private final Set<Position> oMoves;
     private Move lastMove;
 
     public MovesHistory() {

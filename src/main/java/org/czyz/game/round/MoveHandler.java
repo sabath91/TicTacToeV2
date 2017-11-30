@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 class MoveHandler implements Interaction {
 
-    private Scanner scanner;
+    private final Scanner scanner;
     private final ResourceBundle labels;
 
 

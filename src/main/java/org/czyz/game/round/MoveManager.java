@@ -9,14 +9,12 @@ import java.util.ResourceBundle;
 class MoveManager {
     private final MoveHandler moveHandler;
     private final MoveValidator moveValidator;
-    private final Settings settings;
     private final PlayerSwitcher playerSwitcher;
     private final MovesHistory movesHistory;
     private final Printer printer;
     private final ResourceBundle labels;
 
     MoveManager(Settings settings, Printer printer, PlayerSwitcher playerSwitcher, MovesHistory movesHistory, ResourceBundle labels) {
-        this.settings = settings;
         this.printer = printer;
         this.movesHistory = movesHistory;
         this.playerSwitcher = playerSwitcher;

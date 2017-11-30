@@ -9,8 +9,8 @@ import java.util.function.Function;
 
 class BoardDimensionCreator implements Interaction {
 
-    private Scanner scanner;
-    private ResourceBundle labels;
+    private final Scanner scanner;
+    private final ResourceBundle labels;
 
     public BoardDimensionCreator(Scanner scanner, ResourceBundle labels) {
         this.scanner = scanner;

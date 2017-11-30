@@ -4,7 +4,6 @@ import org.czyz.Printer;
 import org.czyz.game.Board;
 import org.czyz.game.BoardBuilder;
 import org.czyz.game.BoardDimensions;
-
 import java.util.Formatter;
 
 class BoardPrinter {
@@ -14,14 +13,14 @@ class BoardPrinter {
     private final int boardSize;
     private final Printer printer;
 
-    public BoardPrinter(BoardBuilder boardBuilder, BoardDimensions dimensions, Printer printer) {
+    BoardPrinter(BoardBuilder boardBuilder, BoardDimensions dimensions, Printer printer) {
         this.boardBuilder = boardBuilder;
         this.boardSize = dimensions.boardSize();
         this.boardWidth = dimensions.getWidth();
         this.printer = printer;
     }
 
-    public void print() {
+    void print() {
 
         Board gameBoard = boardBuilder
                 .viaArrayList()

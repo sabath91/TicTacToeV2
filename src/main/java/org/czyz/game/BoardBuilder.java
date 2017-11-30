@@ -31,7 +31,7 @@ public class BoardBuilder implements Observer {
 
     public BoardBuilder fillUpBoard(){
         //+1 to show number but index --->  0 is too similar to O
-        fields = IntStream.range(1, dimensions.boardSize()+1).mapToObj(number -> new EmptyField(number)).collect(Collectors.toList());
+        fields = IntStream.range(1, dimensions.boardSize()+1).mapToObj(EmptyField::new).collect(Collectors.toList());
         return this;
     }
 

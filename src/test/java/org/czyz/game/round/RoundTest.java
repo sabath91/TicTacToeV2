@@ -1,7 +1,6 @@
 package org.czyz.game.round;
 
 import org.czyz.ConsolePrinter;
-import org.czyz.Printer;
 import org.czyz.Sign;
 import org.czyz.game.BoardDimensions;
 import org.czyz.game.Player;

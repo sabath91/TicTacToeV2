@@ -8,10 +8,6 @@ public class Position {
         this.movePosition = movePosition;
     }
 
-    public int getMovePosition() {
-        return movePosition;
-    }
-
 
     @Override
     public boolean equals(Object o) {
