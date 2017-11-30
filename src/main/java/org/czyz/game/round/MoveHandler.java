@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-import org.czyz.Interaction;
+import org.czyz.ui.Interaction;
 
 import java.util.ResourceBundle;
 import java.util.Scanner;

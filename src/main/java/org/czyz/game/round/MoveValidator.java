@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-import org.czyz.game.BoardDimensions;
+import org.czyz.settings.BoardDimensions;
 
 class MoveValidator{
 

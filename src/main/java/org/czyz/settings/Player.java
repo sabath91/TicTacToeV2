@@ -1,6 +1,4 @@
-package org.czyz.game;
-
-import org.czyz.Sign;
+package org.czyz.settings;
 
 public class Player {
     private final String name;

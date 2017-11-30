@@ -1,13 +1,12 @@
 package org.czyz.initgame;
 
-import org.czyz.ConsolePrinter;
-import org.czyz.game.Settings;
+import org.czyz.ui.ConsolePrinter;
+import org.czyz.settings.Settings;
 import org.czyz.game.round.Triplet;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
-import java.util.ResourceBundle;
 
 import static org.testng.Assert.*;
 

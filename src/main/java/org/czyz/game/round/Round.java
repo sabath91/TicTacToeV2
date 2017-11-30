@@ -1,8 +1,8 @@
 package org.czyz.game.round;
 
-import org.czyz.Printer;
+import org.czyz.ui.Printer;
 import org.czyz.game.Score;
-import org.czyz.game.Settings;
+import org.czyz.settings.Settings;
 
 import java.util.ResourceBundle;
 

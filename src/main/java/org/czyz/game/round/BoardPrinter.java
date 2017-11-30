@@ -1,7 +1,7 @@
 package org.czyz.game.round;
 
-import org.czyz.Printer;
-import org.czyz.game.BoardDimensions;
+import org.czyz.ui.Printer;
+import org.czyz.settings.BoardDimensions;
 import java.util.Formatter;
 
 class BoardPrinter {

@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-import org.czyz.Sign;
+import org.czyz.settings.Sign;
 
 class XField implements Field {
     @Override

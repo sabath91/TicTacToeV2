@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-import org.czyz.Sign;
+import org.czyz.settings.Sign;
 
 import java.util.HashSet;
 import java.util.Observable;

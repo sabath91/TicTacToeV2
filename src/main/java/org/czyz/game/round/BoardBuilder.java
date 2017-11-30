@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-import org.czyz.game.*;
+import org.czyz.settings.BoardDimensions;
 
 import java.util.ArrayList;
 import java.util.List;

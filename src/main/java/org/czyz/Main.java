@@ -1,7 +1,10 @@
 package org.czyz;
 
 import org.czyz.game.Game;
-import org.czyz.game.Settings;
+import org.czyz.ui.ConsolePrinter;
+import org.czyz.ui.ErrorPrinter;
+import org.czyz.ui.Printer;
+import org.czyz.settings.Settings;
 import org.czyz.initgame.GameInitializer;
 
 import java.util.Locale;

@@ -1,7 +1,10 @@
 package org.czyz.game.round;
 
-import org.czyz.Sign;
+import org.czyz.settings.Sign;
 import org.czyz.game.*;
+import org.czyz.settings.BoardDimensions;
+import org.czyz.settings.Settings;
+import org.czyz.settings.WinningSequenceLength;
 
 import java.util.*;
 

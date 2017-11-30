@@ -1,17 +1,16 @@
 package org.czyz.game.round;
 
-import org.czyz.ConsolePrinter;
-import org.czyz.Sign;
-import org.czyz.game.BoardDimensions;
-import org.czyz.game.Player;
+import org.czyz.ui.ConsolePrinter;
+import org.czyz.settings.Sign;
+import org.czyz.settings.BoardDimensions;
+import org.czyz.settings.Player;
 import org.czyz.game.Score;
-import org.czyz.game.Settings;
+import org.czyz.settings.Settings;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
-import java.util.ResourceBundle;
 
 import static org.testng.Assert.*;
 

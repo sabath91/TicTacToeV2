@@ -1,8 +1,8 @@
 package org.czyz.game.round;
 
-import org.czyz.game.Height;
-import org.czyz.game.Width;
-import org.czyz.game.WinningSequenceLength;
+import org.czyz.settings.Height;
+import org.czyz.settings.Width;
+import org.czyz.settings.WinningSequenceLength;
 
 public final class Triplet {
     private final Height height;

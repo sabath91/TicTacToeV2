@@ -1,6 +1,7 @@
 package org.czyz.game.round;
 
-import org.czyz.game.*;
+import org.czyz.settings.BoardDimensions;
+import org.czyz.settings.Settings;
 
 class RoundRefereeBuilder {
 

@@ -1,6 +1,6 @@
 package org.czyz.game.round;
 
-import org.czyz.game.Player;
+import org.czyz.settings.Player;
 
 class PlayerSwitcher {
 
