@@ -42,7 +42,7 @@ public class RoundTest {
         setUpSystemIn(movesSequence);
         //given
         Settings settings = createSettings(triplet);
-        Round round = new Round(settings, new ConsolePrinter(), ResourceBundle.getBundle("lang"));
+        Round round = new Round(settings, new ConsolePrinter());
 
         //when
         Score score = round.play();
@@ -56,7 +56,7 @@ public class RoundTest {
         setUpSystemIn(movesSequence);
         //given
         Settings settings = createSettings(triplet);
-        Round round = new Round(settings, new ConsolePrinter(), ResourceBundle.getBundle("lang"));
+        Round round = new Round(settings, new ConsolePrinter());
 
         //when
         Score score = round.play();

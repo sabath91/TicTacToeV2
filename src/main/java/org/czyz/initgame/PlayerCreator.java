@@ -12,9 +12,9 @@ class PlayerCreator implements Interaction {
     private final Scanner scanner;
     private final ResourceBundle labels;
 
-    PlayerCreator(Scanner scanner, ResourceBundle labels) {
+    PlayerCreator(Scanner scanner) {
         this.scanner = scanner;
-        this.labels = labels;
+        this.labels = ResourceBundle.getBundle("lang");
     }
 
     @Override

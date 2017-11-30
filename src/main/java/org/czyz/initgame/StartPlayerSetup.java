@@ -12,9 +12,9 @@ class StartPlayerSetup implements Interaction {
     private final Scanner scanner;
     private final ResourceBundle labels;
 
-    StartPlayerSetup(Scanner scanner, ResourceBundle labels) {
+    StartPlayerSetup(Scanner scanner) {
         this.scanner = scanner;
-        this.labels = labels;
+        this.labels = ResourceBundle.getBundle("lang");
     }
 
     @Override

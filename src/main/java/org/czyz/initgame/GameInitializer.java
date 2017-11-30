@@ -17,9 +17,9 @@ public class GameInitializer {
     private final Scanner scanner;
     private final ResourceBundle labels;
 
-    public GameInitializer(Printer printer, ResourceBundle labels) {
+    public GameInitializer(Printer printer) {
         this.printer = printer;
-        this.labels = labels;
+        this.labels = ResourceBundle.getBundle("lang");
         scanner = new Scanner(System.in);
     }
 
@@ -34,7 +34,7 @@ public class GameInitializer {
 
     private void setupStartingPlayer() {
         printer.print(labels.getString("starts"));
-        StartPlayerSetup setup = new StartPlayerSetup(scanner, labels);
+        StartPlayerSetup setup = new StartPlayerSetup(scanner);
         StartPlayerValidator validator = new StartPlayerValidator();
         String validUserInput = setup.action(printer::print, validator::validate);
         switch (validUserInput){
@@ -49,7 +49,7 @@ public class GameInitializer {
 
     private void createWinningSequenceLength() {
         printer.print(labels.getString("provideWinningSequenceLength"));
-        WinningSequenceCreator creator = new WinningSequenceCreator(scanner, labels);
+        WinningSequenceCreator creator = new WinningSequenceCreator(scanner);
         int smallerBoardDimension = Math.min(boardDimensions.getWidth(), boardDimensions.getHeight());
         WinningSequenceValidator validator = new WinningSequenceValidator(smallerBoardDimension);
         String validUserInput = creator.action(printer::print, validator::validate);
@@ -67,7 +67,7 @@ public class GameInitializer {
     }
 
     private int askUserForBoardDimension() {
-        BoardDimensionCreator creator = new BoardDimensionCreator(scanner, labels);
+        BoardDimensionCreator creator = new BoardDimensionCreator(scanner);
         DimensionValidator validator = new DimensionValidator();
         String validUserInput = creator.action(printer::print, validator::validate);
         return Integer.valueOf(validUserInput);
@@ -79,8 +79,8 @@ public class GameInitializer {
     }
 
     private Player createPlayer(Sign sign) {
-        printer.print(labels.getString("provideUserName") + sign.toString());
-        PlayerCreator playerCreator = new PlayerCreator(scanner, labels);
+        printer.print(labels.getString("provideUserName") + " " + sign.toString());
+        PlayerCreator playerCreator = new PlayerCreator(scanner);
         PlayerNameValidator playerNameValidator = new PlayerNameValidator();
         String name = playerCreator.action(printer::print, playerNameValidator::validate);
         return new Player(name, sign);

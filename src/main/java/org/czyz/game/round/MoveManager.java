@@ -14,13 +14,13 @@ class MoveManager {
     private final Printer printer;
     private final ResourceBundle labels;
 
-    MoveManager(Settings settings, Printer printer, PlayerSwitcher playerSwitcher, MovesHistory movesHistory, ResourceBundle labels) {
+    MoveManager(Settings settings, Printer printer, PlayerSwitcher playerSwitcher, MovesHistory movesHistory) {
         this.printer = printer;
         this.movesHistory = movesHistory;
         this.playerSwitcher = playerSwitcher;
-        this.moveHandler =new MoveHandler(labels);
         this.moveValidator = new MoveValidator(settings.getBoardDimensions(), movesHistory);
-        this.labels=  labels;
+        this.labels= ResourceBundle.getBundle("lang");
+        this.moveHandler =new MoveHandler();
     }
 
     void handleMove(){

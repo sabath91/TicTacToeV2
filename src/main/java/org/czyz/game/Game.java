@@ -11,9 +11,9 @@ public class Game {
     private final ResourceBundle labels;
     private final Printer printer;
 
-    public Game(Settings settings, Printer printer, ResourceBundle labels) {
+    public Game(Settings settings, Printer printer) {
         this.settings = settings;
-        this.labels = labels;
+        this.labels = ResourceBundle.getBundle("lang");
         gameScore = new Score();
         this.printer = printer;
         
@@ -21,7 +21,7 @@ public class Game {
 
     public void play() {
         for (int i = 0; i < 3; i++) {
-            Round round = new Round(settings, printer, labels);
+            Round round = new Round(settings, printer);
             Score score = round.play();
             gameScore.player1Score += score.player1Score;
             gameScore.player2Score += score.player2Score;

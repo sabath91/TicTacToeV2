@@ -13,14 +13,14 @@ class Main {
 
     public static void main(String[] args) {
         setupPrinter(args);
-        ResourceBundle labels = setupLanguage();
-        GameInitializer gameInitializer = new GameInitializer(printer, labels);
+        setupLanguage();
+        GameInitializer gameInitializer = new GameInitializer(printer);
         Settings settings = gameInitializer.setupGame();
-        new Game(settings, printer, labels).play();
+        new Game(settings, printer).play();
 
     }
 
-    private static ResourceBundle setupLanguage() {
+    private static void setupLanguage() {
         printer.print("Wybierz język| choose language: \npolski: pl\nenglish: en");
         Scanner scanner = new Scanner(System.in);
         String language = scanner.nextLine();
@@ -38,7 +38,7 @@ class Main {
                 Locale.setDefault(new Locale("pl", "PL"));
                 break;
         }
-        return ResourceBundle.getBundle("lang");
+        ResourceBundle.getBundle("lang");
     }
 
     private static void setupPrinter(String[] args) {

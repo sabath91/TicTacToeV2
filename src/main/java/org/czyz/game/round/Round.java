@@ -17,17 +17,17 @@ public class Round {
     private final Printer printer;
     private final ResourceBundle labels;
 
-    public Round(Settings settings, Printer printer, ResourceBundle labels) {
+    public Round(Settings settings, Printer printer) {
         BoardBuilder boardBuilder = new BoardBuilder(settings.getBoardDimensions());
         this.boardPrinter = new BoardPrinter(boardBuilder, settings.getBoardDimensions(), printer);
         this.playerSwitcher = new PlayerSwitcher(settings.getPlayer1(), settings.getPlayer2(), settings.getStartingPlayer());
         this.roundReferee = new RoundReferee(settings);
         MovesHistory movesHistory = new MovesHistory();
-        this.moveManager = new MoveManager(settings,printer, playerSwitcher, movesHistory, labels);
+        this.moveManager = new MoveManager(settings,printer, playerSwitcher, movesHistory);
         movesHistory.addObserver(boardBuilder);
         movesHistory.addObserver(roundReferee);
         this.printer = printer;
-        this.labels = labels;
+        this.labels = ResourceBundle.getBundle("lang");
     }
 
     public Score play() {

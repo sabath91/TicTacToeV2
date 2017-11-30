@@ -12,9 +12,9 @@ class WinningSequenceCreator implements Interaction {
     private final Scanner scanner;
     private final ResourceBundle labels;
 
-    WinningSequenceCreator(Scanner scanner, ResourceBundle labels) {
+    WinningSequenceCreator(Scanner scanner) {
         this.scanner = scanner;
-        this.labels = labels;
+        this.labels = ResourceBundle.getBundle("lang");
     }
 
     @Override

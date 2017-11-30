@@ -37,7 +37,7 @@ public class GameInitializerTest {
 
         setUpSystemIn(stringBuilder);
 
-        GameInitializer gameInitializer = new GameInitializer(new ConsolePrinter(), ResourceBundle.getBundle("lang"));
+        GameInitializer gameInitializer = new GameInitializer(new ConsolePrinter());
 
         //when
         Settings settings = gameInitializer.setupGame();

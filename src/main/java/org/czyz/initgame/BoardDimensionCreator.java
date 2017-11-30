@@ -12,9 +12,9 @@ class BoardDimensionCreator implements Interaction {
     private final Scanner scanner;
     private final ResourceBundle labels;
 
-    public BoardDimensionCreator(Scanner scanner, ResourceBundle labels) {
+    public BoardDimensionCreator(Scanner scanner) {
         this.scanner = scanner;
-        this.labels = labels;
+        this.labels = ResourceBundle.getBundle("lang");
     }
 
     @Override
