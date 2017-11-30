@@ -1,7 +1,6 @@
-package org.czyz.game;
+package org.czyz.game.round;
 
-import org.czyz.game.round.MovesHistory;
-import org.czyz.game.round.Position;
+import org.czyz.game.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,33 +9,33 @@ import java.util.Observer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class BoardBuilder implements Observer {
+class BoardBuilder implements Observer {
     private final BoardDimensions dimensions;
     private List<Field> fields;
     private MovesHistory moves;
 
-    public BoardBuilder(BoardDimensions dimensions) {
+    BoardBuilder(BoardDimensions dimensions) {
         this.dimensions = dimensions;
         moves = new MovesHistory();
     }
 
-    public BoardBuilder viaArrayList(){
+    BoardBuilder viaArrayList(){
         fields = new ArrayList<>(dimensions.boardSize());
         return this;
     }
 
-    public Board build(){
+    Board build(){
         return new Board(fields);
     }
 
-    public BoardBuilder fillUpBoard(){
+    BoardBuilder fillUpBoard(){
         //+1 to show number but index --->  0 is too similar to O
         fields = IntStream.range(1, dimensions.boardSize()+1).mapToObj(EmptyField::new).collect(Collectors.toList());
         return this;
     }
 
 
-    public BoardBuilder fillWithMoves() {
+    BoardBuilder fillWithMoves() {
         for (Position position: moves.getOMoves()) {
             fields.set(position.getIndex(), new OField());
         }
@@ -47,7 +46,7 @@ public class BoardBuilder implements Observer {
     }
 
 
-    public BoardBuilder fillWithMoves(MovesHistory movesHistory) {
+    BoardBuilder fillWithMoves(MovesHistory movesHistory) {
         for (Position position: movesHistory.getOMoves()) {
             fields.set(position.getIndex(), new OField());
         }

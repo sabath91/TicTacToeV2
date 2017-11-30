@@ -1,7 +1,6 @@
 package org.czyz.game.round;
 
 import org.czyz.Printer;
-import org.czyz.game.BoardBuilder;
 import org.czyz.game.Score;
 import org.czyz.game.Settings;
 

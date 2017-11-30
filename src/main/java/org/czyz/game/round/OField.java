@@ -1,8 +1,8 @@
-package org.czyz.game;
+package org.czyz.game.round;
 
 import org.czyz.Sign;
 
-public class OField implements Field {
+class OField implements Field {
     @Override
     public String toString() {
         return Sign.O.toString();

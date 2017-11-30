@@ -6,18 +6,18 @@ import java.util.HashSet;
 import java.util.Observable;
 import java.util.Set;
 
-public class MovesHistory extends Observable {
+class MovesHistory extends Observable {
 
     private final Set<Position> xMoves;
     private final Set<Position> oMoves;
     private Move lastMove;
 
-    public MovesHistory() {
+    MovesHistory() {
         xMoves = new HashSet<>();
         oMoves = new HashSet<>();
     }
 
-    public boolean isPositionFree(Position position) {
+    boolean isPositionFree(Position position) {
         return !xMoves.contains(position) && !oMoves.contains(position);
     }
 
@@ -38,19 +38,19 @@ public class MovesHistory extends Observable {
     }
 
 
-    public Move getLastMove() {
+    Move getLastMove() {
         return lastMove;
     }
 
-    public Set<Position> getXMoves() {
+    Set<Position> getXMoves() {
         return xMoves;
     }
 
-    public Set<Position> getOMoves() {
+    Set<Position> getOMoves() {
         return oMoves;
     }
 
-    public int size(){
+    int size(){
         return xMoves.size() + oMoves.size();
     }
 }

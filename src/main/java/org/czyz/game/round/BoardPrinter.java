@@ -1,8 +1,6 @@
 package org.czyz.game.round;
 
 import org.czyz.Printer;
-import org.czyz.game.Board;
-import org.czyz.game.BoardBuilder;
 import org.czyz.game.BoardDimensions;
 import java.util.Formatter;
 
@@ -46,7 +44,7 @@ class BoardPrinter {
                     board.format("%n");
                 }
             }
-            printer.print(board.toString());
+            printer.print(board);
         } finally {
             if (board != null)
                 board.close();

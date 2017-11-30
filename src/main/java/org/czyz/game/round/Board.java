@@ -1,8 +1,10 @@
-package org.czyz.game;
+package org.czyz.game.round;
+
+import org.czyz.game.round.Field;
 
 import java.util.List;
 
-public class Board {
+class Board {
 
     private final List<Field> board;
 
@@ -15,7 +17,7 @@ public class Board {
         return board.toString();
     }
 
-    public Field get(int i) {
+    Field get(int i) {
         return board.get(i);
     }
 }

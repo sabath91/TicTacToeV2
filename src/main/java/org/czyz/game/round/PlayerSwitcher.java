@@ -8,17 +8,17 @@ class PlayerSwitcher {
     private final Player player2;
     private Player currentPlayer;
 
-    public PlayerSwitcher(Player player1, Player player2, Player starting) {
+    PlayerSwitcher(Player player1, Player player2, Player starting) {
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = starting;
     }
 
-    public Player getCurrentPlayer() {
+    Player getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void switchPlayers(){
+    void switchPlayers(){
         if (currentPlayer.equals(player1)) {
             currentPlayer = player2;
         } else {
@@ -26,7 +26,7 @@ class PlayerSwitcher {
         }
     }
 
-    public Player lastPlayer() {
+    Player lastPlayer() {
         if (currentPlayer.equals(player1)) {
             return player2;
         } else {

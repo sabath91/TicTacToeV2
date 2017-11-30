@@ -6,7 +6,7 @@ class Move {
     final Position position;
     final Sign sign;
 
-    public Move(Position position, Sign sign) {
+    Move(Position position, Sign sign) {
         this.position = position;
         this.sign = sign;
     }

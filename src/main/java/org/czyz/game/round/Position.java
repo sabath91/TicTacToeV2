@@ -1,10 +1,10 @@
 package org.czyz.game.round;
 
-public class Position {
+class Position {
 
     private final int movePosition;
 
-    public Position(int movePosition) {
+    Position(int movePosition) {
         this.movePosition = movePosition;
     }
 
@@ -24,7 +24,7 @@ public class Position {
         return movePosition;
     }
 
-    public int getIndex() {
+    int getIndex() {
         return movePosition - 1;
     }
 }

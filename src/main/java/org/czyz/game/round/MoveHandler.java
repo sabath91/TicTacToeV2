@@ -13,7 +13,7 @@ class MoveHandler implements Interaction {
     private final ResourceBundle labels;
 
 
-    public MoveHandler() {
+    MoveHandler() {
         this.labels = ResourceBundle.getBundle("lang");
         scanner = new Scanner(System.in);
     }

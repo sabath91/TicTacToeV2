@@ -7,7 +7,7 @@ class MoveValidator{
     private final BoardDimensions dimensions;
     private final MovesHistory moves;
 
-    public MoveValidator(BoardDimensions dimensions, MovesHistory movesHistory) {
+    MoveValidator(BoardDimensions dimensions, MovesHistory movesHistory) {
         this.moves = movesHistory;
         this.dimensions = dimensions;
     }
