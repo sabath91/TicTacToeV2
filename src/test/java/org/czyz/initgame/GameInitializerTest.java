@@ -47,7 +47,7 @@ public class GameInitializerTest {
         assertEquals(settings.getWinningSequenceLength().value(),triplet.length());
         assertEquals(settings.getPlayer1().toString(), player1Name);
         assertEquals(settings.getPlayer2().toString(), player2Name);
-        assertEquals(settings.getStartingPlayer().getSing().name(), whoStarts.toUpperCase());
+        assertEquals(settings.getStartingPlayer().getSign().name(), whoStarts.toUpperCase());
 
     }
 

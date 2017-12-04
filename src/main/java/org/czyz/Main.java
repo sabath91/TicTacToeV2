@@ -23,6 +23,7 @@ class Main {
 
     }
 
+    //refactor to strategy pattern
     private static void setupLanguage() {
         printer.print("Wybierz język| choose language: \npolski: pl\nenglish: en");
         Scanner scanner = new Scanner(System.in);
@@ -44,6 +45,7 @@ class Main {
         ResourceBundle.getBundle("lang");
     }
 
+    //refactor to strategy pattern
     private static void setupPrinter(String[] args) {
         if (args.length > 0) {
             switch (args[0].toUpperCase()) {

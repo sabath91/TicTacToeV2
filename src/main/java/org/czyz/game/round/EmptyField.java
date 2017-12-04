@@ -1,7 +1,5 @@
 package org.czyz.game.round;
 
-import org.czyz.game.round.Field;
-
 class EmptyField implements Field {
     private final int index;
 
