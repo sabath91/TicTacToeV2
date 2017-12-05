@@ -35,7 +35,6 @@ public class RoundRefereeTest {
 
         //then
         assertWin(roundReferee);
-        assertTrue(false);
     }
 
 
