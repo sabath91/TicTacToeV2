@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 class BoardBuilder implements Observer {
     private final BoardDimensions dimensions;
     private List<Field> fields;
+    //MoveHistory sounds better to me
     private MovesHistory moves;
 
     BoardBuilder(BoardDimensions dimensions) {
@@ -36,10 +37,10 @@ class BoardBuilder implements Observer {
 
 
     BoardBuilder fillWithMoves() {
-        for (Position position: moves.getOMoves()) {
+        for (Position position : moves.getOMoves()) {
             fields.set(position.getIndex(), new OField());
         }
-        for (Position position: moves.getXMoves()) {
+        for (Position position : moves.getXMoves()) {
             fields.set(position.getIndex(), new XField());
         }
         return this;
@@ -56,6 +57,7 @@ class BoardBuilder implements Observer {
         return this;
     }
 
+    //consider to implement your own Observer <-> Observable relation
     @Override
     public void update(Observable movesHistory, Object arg) {
         moves = (MovesHistory) movesHistory;

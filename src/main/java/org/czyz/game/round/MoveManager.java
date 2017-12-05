@@ -28,7 +28,7 @@ class MoveManager {
         String validUserInput = moveHandler.action(printer::print, moveValidator::validate);
         int move = Integer.parseInt(validUserInput);
         Position position = new Position(move);
-        Sign playerSign = playerSwitcher.getCurrentPlayer().getSing();
+        Sign playerSign = playerSwitcher.getCurrentPlayer().getSign();
         movesHistory.markField(position, playerSign);
     }
 

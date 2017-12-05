@@ -9,7 +9,7 @@ public class Player {
         this.sing = sing;
     }
 
-    public Sign getSing() {
+    public Sign getSign() {
         return sing;
     }
 

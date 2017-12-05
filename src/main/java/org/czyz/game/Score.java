@@ -2,6 +2,7 @@ package org.czyz.game;
 
 public class Score {
 
+    //consider to replace numbers with words
     int player1Score;
     int player2Score;
 
